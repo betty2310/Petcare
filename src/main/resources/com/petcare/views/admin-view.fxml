@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.AdminController">
+   <left>
+      <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #5E81AC;" stylesheets="@../styles/navigation-styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox layoutX="-1.0" layoutY="88.0" prefHeight="518.0" prefWidth="191.0" spacing="30.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Button id="menuButton" fx:id="buttonPet" mnemonicParsing="false" onAction="#switchToPet" prefHeight="48.0" prefWidth="191.0" text="Thú cưng" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button id="menuButton" fx:id="buttonService" mnemonicParsing="false" onAction="#switchToService" prefHeight="48.0" prefWidth="191.0" text="Dịch vụ" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="50.0" />
+               </padding>
+            </VBox>
+            <Button id="menuButton" fx:id="dashboardButton" layoutX="-1.0" layoutY="22.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="48.0" prefWidth="191.0" text="DASHBOARD" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI" size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <AnchorPane fx:id="basePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4f6fb;" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="32.0" layoutY="60.0" stroke="#b9bdbf" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #A3BE8C;" width="200.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="150.0" layoutX="255.0" layoutY="61.0" stroke="#b9bdbf" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-fill: #D08770;" width="200.0" />
+            <Label layoutX="143.0" layoutY="146.0" text="Thú cưng">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="377.0" layoutY="146.0" text="Dịch vụ">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="54.0" fitWidth="56.0" layoutX="55.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/paw.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="70.0" fitWidth="71.0" layoutX="282.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/house.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="numberPetLabel" alignment="BASELINE_CENTER" layoutX="132.0" layoutY="97.0" prefHeight="39.0" prefWidth="82.0" text="?" textAlignment="CENTER" textFill="#2e3440">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Label fx:id="numberServiceLabel" alignment="BASELINE_CENTER" layoutX="368.0" layoutY="97.0" prefHeight="39.0" prefWidth="70.0" text="?" textFill="#2e3440">
+               <font>
+                  <Font size="27.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="460.0" layoutX="498.0" layoutY="60.0" stroke="#b9bdbf" strokeType="OUTSIDE" strokeWidth="0.0" width="180.0" />
+            <Label alignment="BASELINE_CENTER" layoutX="497.0" layoutY="97.0" prefHeight="39.0" prefWidth="182.0" text="Welcome back">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" text="user name" textFill="#1bbde4">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Line endX="50.0" layoutX="588.0" layoutY="204.0" startX="-50.0" stroke="#b9bdbf" />
+            <Text layoutX="508.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông báo" textAlignment="CENTER" wrappingWidth="158.52798461914062">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Text fx:id="notifLabel" fill="#1bbde4" layoutX="515.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khum có" textAlignment="CENTER" wrappingWidth="143.3280029296875">
+               <font>
+                  <Font name="System Italic" size="18.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
+   </center>
+</BorderPane>
