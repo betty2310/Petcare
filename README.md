@@ -1,4 +1,4 @@
-`Quản lý hệ thống thú cưng 🐶 🐱`
+# `Quản lý hệ thống thú cưng 🐶 🐱`
 
 
 ## Cài đặt
@@ -17,6 +17,19 @@
           Mở IDE (Inntellij), vào **Run**, chọn **Edit Configuration**, chọn **Add VM variables** và thêm:
             
             --module-path $PATH_TO_FX --add-modules javafx.controls,javafx.fxml`
+3. Cài đặt database
+   Project sử dụng database MySQL, tải và cài đặt theo hướng dẫn tại [MySQL](https://www.mysql.com/downloads/).
+    - Tạo database:
+         ```
+        mysql -u root
+        create database petcare;
+        exit;
+         ```
+    - Import database:
+        ```
+        mysql -u root petcare < petcare.sql
+        ```
+
 
 ## Lisence
 
