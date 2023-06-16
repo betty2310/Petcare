@@ -1,4 +1,4 @@
-module comz.quartermanagement {
+module com.petcare {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
