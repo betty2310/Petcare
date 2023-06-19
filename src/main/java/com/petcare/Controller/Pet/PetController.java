@@ -3,7 +3,6 @@ package com.petcare.Controller.Pet;
 import com.petcare.HomeApplication;
 import com.petcare.Model.Pet;
 import com.petcare.Services.PetService;
-import com.petcare.Utils.Utils;
 import com.petcare.Utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +20,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static com.petcare.Constants.FXMLConstants.PET_CARD_VIEW_FXML;
-import static com.petcare.Constants.FXMLConstants.PET_DETAIL_VIEW_FXML;
+import static com.petcare.Constants.FXMLConstants.*;
 
 public class PetController implements Initializable {
 
@@ -36,6 +34,20 @@ public class PetController implements Initializable {
 
     @FXML
     void add(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_ADD_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            AddPetController popupController = fxmlLoader.getController();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Add Pet!");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

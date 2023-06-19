@@ -20,6 +20,14 @@ public class Pet {
         this.employeeID = employeeID;
     }
 
+    public Pet(String name, char gender, String info, int ownerID, int employeeID) {
+        this.name = name;
+        this.gender = gender;
+        this.info = info;
+        this.ownerID = ownerID;
+        this.employeeID = employeeID;
+    }
+
     public int getID() {
         return ID;
     }

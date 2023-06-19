@@ -49,4 +49,19 @@ public class PetService {
         }
         return numberOfPets;
     }
+
+    public static int addPet(Pet pet) {
+        String INSERT_QUERY = "INSERT INTO Pets (Name, Gender, Info, Owner_ID, Employee_ID) VALUES (?, ?, ?, ?, ?)";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(INSERT_QUERY)) {
+            preparedStatement.setString(1, pet.getName());
+            preparedStatement.setString(2, String.valueOf(pet.getGender()));
+            preparedStatement.setString(3, pet.getInfo());
+            preparedStatement.setInt(4, pet.getOwnerID());
+            preparedStatement.setInt(5, pet.getEmployeeID());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error adding pet: " + pet, e);
+        }
+    }
 }
