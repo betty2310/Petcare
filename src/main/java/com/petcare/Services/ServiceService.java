@@ -22,4 +22,20 @@ public class ServiceService {
             throw new RuntimeException("Error retrieving service ets for owner ID: " + ownerID, e);
         }
     }
+    public static int getNumberOfServicesByOwnerID(int ownerID) {
+        int n = 0;
+        String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Service WHERE owner_id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY)) {
+            preparedStatement.setInt(1, ownerID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    n = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the number of services for owner ID: " + ownerID, e);
+        }
+        return n;
+    }
 }
