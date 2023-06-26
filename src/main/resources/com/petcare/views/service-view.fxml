@@ -10,26 +10,26 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceController">
     <children>
-        <Text layoutX="56.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các dịch vụ hiện có" textAlignment="CENTER" wrappingWidth="213.49612426757812">
+        <Text layoutX="18.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các dịch vụ hiện có" textAlignment="CENTER" wrappingWidth="267.4961242675781">
             <font>
-                <Font size="26.0" />
+                <Font name="System Bold" size="26.0" />
             </font>
         </Text>
-      <HBox layoutX="59.0" layoutY="101.0" prefHeight="138.0" prefWidth="505.0" spacing="20.0">
+      <HBox layoutX="165.0" layoutY="106.0" prefHeight="100.0" prefWidth="380.0" spacing="20.0">
          <children>
             <Button mnemonicParsing="false" onAction="#examine" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #BF616A;" text="Khám bệnh" textAlignment="CENTER" textFill="#2e3440" wrapText="true">
                <font>
-                  <Font name="System Bold" size="26.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#makeup" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #EBCB8B;" text="Chăm sóc sắc đẹp" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font size="26.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
             <Button mnemonicParsing="false" onAction="#hotel" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #B48EAD;" text="Khách sạn thú cưng" textAlignment="CENTER" wrapText="true">
                <font>
-                  <Font size="26.0" />
+                  <Font size="18.0" />
                </font>
             </Button>
          </children>

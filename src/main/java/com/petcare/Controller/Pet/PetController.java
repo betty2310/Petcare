@@ -53,7 +53,20 @@ public class PetController implements Initializable {
 
     @FXML
     void delete(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_DELETE_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            DeletePetController popupController = fxmlLoader.getController();
 
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Delete pet!");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
