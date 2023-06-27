@@ -75,4 +75,16 @@ public class PetService {
             throw new RuntimeException("Error delete pet: " + pet, e);
         }
     }
+
+    public static int updateInfoPet(Pet pet, String info) {
+        String UPDATE_QUERY = "UPDATE Pets SET Info = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setString(1, info);
+            preparedStatement.setInt(2, pet.getID());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update pet: " + pet, e);
+        }
+    }
 }
