@@ -2,6 +2,7 @@ package com.petcare.Controller;
 
 import com.petcare.Services.OwnerService;
 import com.petcare.Services.PetService;
+import com.petcare.Services.ServiceService;
 import com.petcare.Utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -76,6 +77,7 @@ public class AdminController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(1));
         usernameLabel.setText("" + OwnerService.getNameFromID(1));
+        numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(1));
     }
 
 }

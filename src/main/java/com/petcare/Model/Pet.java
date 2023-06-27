@@ -75,4 +75,8 @@ public class Pet {
     public void setEmployeeID(int employeeID) {
         this.employeeID = employeeID;
     }
+
+    public String toString() {
+        return this.name;
+    }
 }

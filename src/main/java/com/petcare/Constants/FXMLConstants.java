@@ -10,6 +10,7 @@ public class FXMLConstants {
     public static String PET_DETAIL_VIEW_FXML = "/com/petcare/views/pet-detail-popup.fxml";
 
     public static String PET_ADD_VIEW_FXML = "/com/petcare/views/pet-add-view.fxml";
+    public static String PET_DELETE_VIEW_FXML = "/com/petcare/views/pet-delete-view.fxml";
 
     public static String SERVICE_VIEW_FXML = "/com/petcare/views/service-view.fxml";
     public static String PET_CARD_VIEW_FXML = "/com/petcare/views/PetCard.fxml";

@@ -10,9 +10,9 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Pet.PetController">
     <children>
-        <Text layoutX="28.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thú cưng của bạn" textAlignment="CENTER" wrappingWidth="184.77688598632812">
+        <Text layoutX="38.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thú cưng của bạn" textAlignment="CENTER" wrappingWidth="219.77688598632812">
             <font>
-                <Font size="24.0" />
+                <Font name="System Bold" size="24.0" />
             </font>
         </Text>
         <Button layoutX="468.0" layoutY="62.40234375" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">

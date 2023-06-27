@@ -64,4 +64,15 @@ public class PetService {
             throw new RuntimeException("Error adding pet: " + pet, e);
         }
     }
+
+    public static int deletePet(Pet pet) {
+        String DELETE_QUERY = "DELETE from Pets WHERE id = ? ";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(DELETE_QUERY)) {
+            preparedStatement.setInt(1, pet.getID());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error delete pet: " + pet, e);
+        }
+    }
 }
