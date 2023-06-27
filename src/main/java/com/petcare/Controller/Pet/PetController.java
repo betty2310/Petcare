@@ -107,6 +107,7 @@ public class PetController implements Initializable {
 
             popupController.setNameLabel(pet.getName());
             popupController.setInfoLabel(pet.getInfo());
+            popupController.setTable();
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);

@@ -1,6 +1,7 @@
 package com.petcare.Services;
 
 import com.petcare.Model.Pet;
+import com.petcare.Model.RecordOnPet;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -86,5 +87,33 @@ public class PetService {
         } catch (SQLException e) {
             throw new RuntimeException("Error update pet: " + pet, e);
         }
+    }
+
+    public static List<RecordOnPet> getRecordsOnPet(int petID) {
+        List<RecordOnPet> recordsOnPet = new ArrayList<>();
+        String SELECT_QUERY = "SELECT Name, Type, State, Date, Status\n" +
+                "FROM pets\n" +
+                "INNER JOIN record ON pets.ID = record.Pet_ID\n" +
+                "INNER JOIN service ON record.Service_ID = service.ID WHERE pets.ID = ? ;";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+            preparedStatement.setInt(1, petID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String name = resultSet.getString("Name");
+                    Date date = resultSet.getDate("Date");
+                    String type = resultSet.getString("Type");
+                    String status = resultSet.getString("Status");
+                    String state = resultSet.getString("State");
+                    RecordOnPet recordOnPet = new RecordOnPet(name, date, type, status, state);
+                    recordsOnPet.add(recordOnPet);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving records on pet for pet ID: " + petID, e);
+        }
+        return recordsOnPet;
     }
 }
