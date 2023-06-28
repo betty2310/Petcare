@@ -103,8 +103,11 @@ public class PetController implements Initializable {
         try {
             Parent root = fxmlLoader.load();
             PetDetailController popupController = fxmlLoader.getController();
+            popupController.setPet(pet);
 
             popupController.setNameLabel(pet.getName());
+            popupController.setInfoLabel(pet.getInfo());
+            popupController.setTable();
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);

@@ -17,17 +17,17 @@
         </Text>
       <HBox layoutX="165.0" layoutY="106.0" prefHeight="100.0" prefWidth="380.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#examine" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #BF616A;" text="Khám bệnh" textAlignment="CENTER" textFill="#2e3440" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #BF616A;" text="Khám bệnh" textAlignment="CENTER" textFill="#2e3440" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#makeup" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #EBCB8B;" text="Chăm sóc sắc đẹp" textAlignment="CENTER" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #EBCB8B;" text="Chăm sóc sắc đẹp" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#hotel" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #B48EAD;" text="Khách sạn thú cưng" textAlignment="CENTER" wrapText="true">
+            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #B48EAD;" text="Khách sạn thú cưng" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
