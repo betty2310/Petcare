@@ -27,6 +27,14 @@ public class Service {
         this.ownerId = ownerId;
     }
 
+    public Service(String type, Date today, Date startTime, Date endTime, int ownerId) {
+        this.type = type;
+        this.date = today;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.ownerId = ownerId;
+    }
+
     // Getter and setter methods
 
     public int getId() {
