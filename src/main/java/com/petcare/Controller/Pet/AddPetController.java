@@ -29,6 +29,10 @@ public class AddPetController implements Initializable {
     @FXML
     private Text stage;
 
+    boolean isNameValid(String name) {
+        return name.matches("[a-zA-Z]+");
+    }
+
     @FXML
     void addPet(ActionEvent event) {
         String name = nameInput.getText();
