@@ -50,6 +50,11 @@ public class AdminController implements Initializable {
     @FXML
     private Label usernameLabel;
 
+    @FXML
+    private Button buttonMedicalAppointment;
+
+    @FXML
+    private Button buttonStatistics;
 
     //Save user role
     private static final Preferences userPreferences = Preferences.userRoot();
@@ -58,11 +63,18 @@ public class AdminController implements Initializable {
     private final ViewUtils viewUtils = new ViewUtils();
     private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
+
     public AdminController() throws SQLException {
     }
 
     public void switchToDashboard(ActionEvent event) throws IOException {
+
+        if(userRole.equals("admin")){
+            buttonMedicalAppointment.setVisible(true);
+            buttonStatistics.setVisible(true);
+        }
         viewUtils.changeScene(event, ADMIN_VIEW_FXML);
+
     }
 
     public void switchToPet() throws IOException {
