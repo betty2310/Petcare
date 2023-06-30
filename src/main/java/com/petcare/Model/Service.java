@@ -2,6 +2,8 @@ package com.petcare.Model;
 
 import java.sql.Time;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Service {
     private int id;
@@ -12,6 +14,7 @@ public class Service {
     private Date startTime;
     private Date endTime;
     private int ownerId;
+    List<String> danhSach = new ArrayList<>();
 
     public Service() {
     }

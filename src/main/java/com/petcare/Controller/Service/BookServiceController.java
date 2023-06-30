@@ -1,8 +1,10 @@
 package com.petcare.Controller.Service;
 
+import com.petcare.Controller.Service.ServiceController;
 import com.petcare.Model.Pet;
 import com.petcare.Model.Service;
 import com.petcare.Services.PetService;
+import com.petcare.Services.TypeService;
 import com.petcare.Services.RecordService;
 import com.petcare.Services.ServiceService;
 import javafx.collections.FXCollections;
@@ -16,11 +18,13 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class BookServiceController implements Initializable {
+import static com.petcare.Services.TypeService.getTypes;
 
+public class BookServiceController implements Initializable {
     @FXML
     private DatePicker endDate;
 
@@ -71,7 +75,7 @@ public class BookServiceController implements Initializable {
         petChoice.setItems(petObservableList);
         petChoice.getSelectionModel().selectFirst();
 
-        ObservableList<String> serviceList = FXCollections.observableArrayList("khám bệnh", "lưu trữ", "làm đẹp");
+        ObservableList<String> serviceList = FXCollections.observableArrayList(getTypes());
         serviceChoiceBox.setItems(serviceList);
         serviceChoiceBox.getSelectionModel().selectFirst();
     }

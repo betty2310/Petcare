@@ -70,7 +70,7 @@ public class AdminController implements Initializable {
 
     }
     public void switchToService() throws IOException {
-        viewUtils.changeAnchorPane(basePane, SERVICE_VIEW_FXML);
+        viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
     }
     
     @Override

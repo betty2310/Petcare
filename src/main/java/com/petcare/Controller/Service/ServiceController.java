@@ -67,7 +67,6 @@ public class ServiceController implements Initializable {
         ResultSet rs = ServiceService.getServicesByOwnerID(1);
 
         List<Service> serviceList = new ArrayList<>();
-
         try {
             while (rs.next()) {
                 int id = rs.getInt("ID");

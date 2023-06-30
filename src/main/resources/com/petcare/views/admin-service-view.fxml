@@ -11,9 +11,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceController">
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.AdminServiceController">
     <children>
-      <Button fx:id="add_service_id" layoutX="596.0" layoutY="73.0" mnemonicParsing="false" text="Thêm dịch vụ" />
+      <Button fx:id="add_service_id" layoutX="596.0" layoutY="73.0" mnemonicParsing="false" onAction="#add" text="Thêm dịch vụ" />
         <Text layoutX="18.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các dịch vụ hiện có" textAlignment="CENTER" wrappingWidth="267.4961242675781">
             <font>
                 <Font name="System Bold" size="26.0" />
@@ -23,7 +23,7 @@
          <content>
             <TableView fx:id="table" prefHeight="264.0" prefWidth="672.0" stylesheets="@../styles/table.css">
               <columns>
-                  <TableColumn fx:id="idcolumn" prefWidth="75.0" text="ID chủ nuôi" />
+                  <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID chủ nuôi" />
                 <TableColumn fx:id="typeColumn" prefWidth="129.40107345581055" text="Tên dịch vụ" />
                 <TableColumn fx:id="stateColumn" prefWidth="98.53044128417969" text="Trạng thái" />
                   <TableColumn fx:id="priceColumn" prefWidth="84.53050231933594" text="Giá $" />
