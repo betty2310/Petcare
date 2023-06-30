@@ -69,10 +69,7 @@ public class AdminController implements Initializable {
 
     public void switchToDashboard(ActionEvent event) throws IOException {
 
-        if(userRole.equals("admin")){
-            buttonMedicalAppointment.setVisible(true);
-            buttonStatistics.setVisible(true);
-        }
+
         viewUtils.changeScene(event, ADMIN_VIEW_FXML);
 
     }
@@ -90,6 +87,10 @@ public class AdminController implements Initializable {
         numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(1));
         usernameLabel.setText("" + OwnerService.getNameFromID(1));
         numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(1));
+        if(userRole.equals("admin")){
+            buttonMedicalAppointment.setVisible(true);
+            buttonStatistics.setVisible(true);
+        }
     }
 
 }
