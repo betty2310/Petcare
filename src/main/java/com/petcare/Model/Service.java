@@ -14,7 +14,6 @@ public class Service {
     private Date startTime;
     private Date endTime;
     private int ownerId;
-    List<String> danhSach = new ArrayList<>();
 
     public Service() {
     }

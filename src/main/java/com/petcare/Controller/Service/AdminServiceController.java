@@ -1,15 +1,14 @@
 package com.petcare.Controller.Service;
 
-import com.petcare.Controller.Pet.AddPetController;
-import com.petcare.Controller.Pet.PetCard;
+import com.petcare.Controller.Pet.DeletePetController;
 import com.petcare.HomeApplication;
-import com.petcare.Model.Pet;
 import com.petcare.Model.Service;
-import com.petcare.Services.PetService;
 import com.petcare.Services.ServiceService;
+import com.petcare.Services.TypeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,7 +17,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -31,6 +32,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static com.petcare.Constants.FXMLConstants.*;
@@ -45,13 +47,13 @@ public class AdminServiceController implements Initializable {
     private TableColumn<Service, String> dateColumn, typeColumn, endColumn, priceColumn, startColumn, stateColumn, idColumn;
 
     @FXML
-    private GridPane gridPet;
+    private GridPane gridType;
 
     @FXML
     private TableView<Service> table;
 
     @FXML
-    void bookService(ActionEvent event) {
+    void bookService() {
         FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SERVICE_HOTEL_VIEW_FXML));
         try {
             Parent root = fxmlLoader.load();
@@ -85,17 +87,41 @@ public class AdminServiceController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    void delete(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(ADMIN_TYPE_DELETE_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            DeleteTypeController popupController = fxmlLoader.getController();
 
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Delete type!");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
+    private String getRandomColorCode(Random random) {
+        // Tạo một màu ngẫu nhiên
+        int red = random.nextInt(256);
+        int green = random.nextInt(256);
+        int blue = random.nextInt(256);
+
+        return String.format("#%02x%02x%02x", red, green, blue); // Định dạng mã màu hex
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-//        List<Pet> pets = PetService.getPetsByOwnerID(1);
+       List<String> types = TypeService.getTypes();
 //        int row = 0, column = 0;
-//        for(Pet pet : pets) {
-//            String name = pet.getName();
-//            String info = pet.getInfo();
+//        for(String type : types) {
+//            String name = type.toString();
+////            String info = pet.getInfo();
 //
 //            FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_CARD_VIEW_FXML));
 //            try {
@@ -114,7 +140,29 @@ public class AdminServiceController implements Initializable {
 //                throw new RuntimeException(e);
 //            }
 //        }
+        int rowIndex = 0;
+        int colIndex = 0;
+        Random random = new Random();
 
+        for (String type : types) {
+            Button button = new Button(type);
+            Font font = new Font("System", 18); // Tạo đối tượng Font với tên font và kích thước
+            button.setFont(font);
+            button.setStyle("-fx-background-color: " + getRandomColorCode(random)); // Màu nền ngẫu nhiên
+            button.setOnMouseClicked(event -> bookService());
+            // Thêm button vào GridPane
+//            gridType.setConstraints(button, colIndex, rowIndex);
+//            gridType.setFillWidth(button, true); // Button fit với chiều rộng cột
+//            gridType.setFillHeight(button, true);
+            button.setPrefWidth(211); // Chiều rộng
+            button.setPrefHeight(192);
+            gridType.add(button, colIndex, rowIndex);
+            colIndex++;
+            if (colIndex > 2) {
+                colIndex = 0;
+                rowIndex++;
+            }
+        }
 
         ResultSet rs = ServiceService.getServices();
 

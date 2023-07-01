@@ -43,4 +43,35 @@ public class TypeService {
             throw new RuntimeException("Error retrieving type ets ", e);
         }
     }
+    public static int deleteType(Type type) {
+        String DELETE_QUERY = "DELETE from type WHERE name = ? ";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(DELETE_QUERY)) {
+            preparedStatement.setString(1, type.getName());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error delete type: " + type, e);
+        }
+    }
+    public static List<Type> getAllTypes() {
+        List<Type> types = new ArrayList<>();
+        String SELECT_QUERY = "SELECT * FROM type";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int ID = resultSet.getInt("ID");
+                    String name = resultSet.getString("name");
+                    String info = resultSet.getString("info");
+                    Type type = new Type(ID, name, info);
+                    types.add(type);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving types ", e);
+        }
+        return types;
+    }
 }
