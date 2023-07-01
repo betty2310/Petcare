@@ -63,7 +63,6 @@ public class AdminController implements Initializable {
     private final ViewUtils viewUtils = new ViewUtils();
     private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
-
     public AdminController() throws SQLException {
     }
 
@@ -88,6 +87,11 @@ public class AdminController implements Initializable {
     }
     public void switchToStatistics() throws IOException {
         viewUtils.changeAnchorPane(basePane, STATISTICS_VIEW_FXML );
+    }
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        viewUtils.changeScene(event, HOME_VIEW_FXML);
+
     }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
