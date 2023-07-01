@@ -78,6 +78,7 @@ public class ServiceController implements Initializable {
                 Date endTime = rs.getDate("End_Time");
                 int ownerId = rs.getInt("Owner_ID");
 
+
                 // Create Service object
                 Service service = new Service(id, price, date, state, type, startTime, endTime, ownerId);
 

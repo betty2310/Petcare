@@ -19,4 +19,8 @@ public class FXMLConstants {
     public static String ADMIN_SERVICE_ADD_VIEW_FXML = "/com/petcare/views/admin-service-add-view.fxml";
     public static String ADMIN_SERVICE_VIEW_FXML = "/com/petcare/views/admin-service-view.fxml";
     public static String ADMIN_TYPE_DELETE_VIEW_FXML = "/com/petcare/views/admin-type-delete-view.fxml";
+
+    public static String MEDICAL_APPOINTMENT_VIEW_FXML = "/com/petcare/views/medical-appointment-view.fxml";
+
+    public static String STATISTICS_VIEW_FXML = "/com/petcare/views/statistics-view.fxml";
 }
