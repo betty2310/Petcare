@@ -1,5 +1,6 @@
 package com.petcare.Controller.Service;
 
+import com.petcare.Controller.Pet.DeletePetController;
 import com.petcare.HomeApplication;
 import com.petcare.Model.Service;
 import com.petcare.Services.ServiceService;
@@ -7,20 +8,22 @@ import com.petcare.Services.TypeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.scene.layout.GridPane;
+import javafx.scene.control.Button;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,24 +34,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.prefs.Preferences;
 
-import static com.petcare.Constants.FXMLConstants.SERVICE_HOTEL_VIEW_FXML;
+import static com.petcare.Constants.FXMLConstants.*;
 
-public class ServiceController implements Initializable {
-
+public class AdminServiceController implements Initializable {
     @FXML
-    private TableColumn<Service, String> dateColumn, typeColumn, endColumn, priceColumn, startColumn, stateColumn;
-
-    @FXML
-    private TableView<Service> table;
+    private Button add_service_id;
 
     @FXML
     private AnchorPane basePane;
     @FXML
+    private TableColumn<Service, String> dateColumn, typeColumn, endColumn, priceColumn, startColumn, stateColumn, idColumn;
+
+    @FXML
     private GridPane gridType;
 
-
+    @FXML
+    private TableView<Service> table;
 
     @FXML
     void bookService() {
@@ -68,6 +70,42 @@ public class ServiceController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void add(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(ADMIN_SERVICE_ADD_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            AddServiceController popupController = fxmlLoader.getController();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Add new Service!");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void delete(ActionEvent event) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(ADMIN_TYPE_DELETE_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            DeleteTypeController popupController = fxmlLoader.getController();
+
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Delete type!");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String getRandomColorCode(Random random) {
         // Tạo một màu ngẫu nhiên
         int red = random.nextInt(256);
@@ -79,18 +117,44 @@ public class ServiceController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        List<String> types = TypeService.getTypes();
+       List<String> types = TypeService.getTypes();
+//        int row = 0, column = 0;
+//        for(String type : types) {
+//            String name = type.toString();
+////            String info = pet.getInfo();
+//
+//            FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_CARD_VIEW_FXML));
+//            try {
+//                AnchorPane petCard = fxmlLoader.load();
+//                PetCard petcard = fxmlLoader.getController();
+//                petcard.setInfoLabel("Info: "+ info);
+//                petcard.petButton.setOnMouseClicked(event -> handlePetCardClick(pet));
+//                petcard.setNameLabel(name);
+//                gridPet.add(petCard, column, row);
+//                column++;
+//                if (column == 3) {
+//                    column = 0;
+//                    row++;
+//                }
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//        }
         int rowIndex = 0;
         int colIndex = 0;
         Random random = new Random();
 
         for (String type : types) {
             Button button = new Button(type);
-            Font font = new Font("System", 18);
+            Font font = new Font("System", 18); // Tạo đối tượng Font với tên font và kích thước
             button.setFont(font);
-            button.setStyle("-fx-background-color: " + getRandomColorCode(random));
+            button.setStyle("-fx-background-color: " + getRandomColorCode(random)); // Màu nền ngẫu nhiên
             button.setOnMouseClicked(event -> bookService());
-            button.setPrefWidth(211);
+            // Thêm button vào GridPane
+//            gridType.setConstraints(button, colIndex, rowIndex);
+//            gridType.setFillWidth(button, true); // Button fit với chiều rộng cột
+//            gridType.setFillHeight(button, true);
+            button.setPrefWidth(211); // Chiều rộng
             button.setPrefHeight(192);
             gridType.add(button, colIndex, rowIndex);
             colIndex++;
@@ -100,13 +164,10 @@ public class ServiceController implements Initializable {
             }
         }
 
-        //ResultSet rs = ServiceService.getServicesByOwnerID(1);
-
-        Preferences pre = Preferences.userRoot();
-        int ID = pre.getInt("id", 0);
-        ResultSet rs = ServiceService.getServicesByOwnerID(ID);
+        ResultSet rs = ServiceService.getServices();
 
         List<Service> serviceList = new ArrayList<>();
+
         try {
             while (rs.next()) {
                 int id = rs.getInt("ID");
@@ -117,7 +178,6 @@ public class ServiceController implements Initializable {
                 Date startTime = rs.getDate("Start_Time");
                 Date endTime = rs.getDate("End_Time");
                 int ownerId = rs.getInt("Owner_ID");
-
 
                 // Create Service object
                 Service service = new Service(id, price, date, state, type, startTime, endTime, ownerId);
@@ -139,6 +199,7 @@ public class ServiceController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         startColumn.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
-
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("ownerId"));
     }
 }
+
