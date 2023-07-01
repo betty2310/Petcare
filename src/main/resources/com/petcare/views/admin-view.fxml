@@ -29,12 +29,12 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonMedicalAppointment" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="hẹn khám bệnh" textFill="WHITE" visible="false">
+                  <Button fx:id="buttonMedicalAppointment" mnemonicParsing="false" onAction="#switchToMedical" prefHeight="48.0" prefWidth="191.0" text="hẹn khám bệnh" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonStatistics" mnemonicParsing="false" prefHeight="48.0" prefWidth="191.0" text="Thống kê" textFill="WHITE" visible="false">
+                  <Button fx:id="buttonStatistics" mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="48.0" prefWidth="191.0" text="Thống kê" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
