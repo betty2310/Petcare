@@ -18,6 +18,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class BookServiceController implements Initializable {
 
@@ -49,7 +50,9 @@ public class BookServiceController implements Initializable {
                 log.setText("Please fill all the fields");
 
             } else {
-                Service service = new Service(serviceName, today, start, end, 1);
+                Preferences pre = Preferences.userRoot();
+                int ID = pre.getInt("id", 0);
+                Service service = new Service(serviceName, today, start, end, ID);
                 int id = ServiceService.addService(service);
                 if (id == -1) {
                     log.setText("Service not added");
@@ -66,7 +69,9 @@ public class BookServiceController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Pet> petList = PetService.getPetsByOwnerID(1);
+        Preferences pre = Preferences.userRoot();
+        int id = pre.getInt("id", 0);
+        List<Pet> petList = PetService.getPetsByOwnerID(id);
         ObservableList<Pet> petObservableList = FXCollections.observableArrayList(petList);
         petChoice.setItems(petObservableList);
         petChoice.getSelectionModel().selectFirst();

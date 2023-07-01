@@ -41,6 +41,8 @@ public class HomeController {
                     Preferences userPreferences = Preferences.userRoot();
                     userPreferences.put("role", result.getString(4));
                     userPreferences.put("username", result.getString(2));
+                    userPreferences.put("id", result.getString(1));
+
                     ViewUtils viewUtils = new ViewUtils();
                     viewUtils.changeScene(event, ADMIN_VIEW_FXML);
                 }   else {
