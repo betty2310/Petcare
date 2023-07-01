@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 import static com.petcare.Constants.FXMLConstants.*;
 
@@ -72,7 +73,10 @@ public class PetController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        List<Pet> pets = PetService.getPetsByOwnerID(1);
+        Preferences pre = Preferences.userRoot();
+        String role = pre.get("role", "");
+        int id = pre.getInt("id", 0);
+        List<Pet> pets = PetService.getPetsByOwnerID(id);
         int row = 0, column = 0;
         for(Pet pet : pets) {
             String name = pet.getName();

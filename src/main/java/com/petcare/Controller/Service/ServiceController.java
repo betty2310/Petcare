@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 import static com.petcare.Constants.FXMLConstants.SERVICE_HOTEL_VIEW_FXML;
 
@@ -77,6 +78,7 @@ public class ServiceController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         List<String> types = TypeService.getTypes();
         int rowIndex = 0;
         int colIndex = 0;
@@ -98,7 +100,11 @@ public class ServiceController implements Initializable {
             }
         }
 
-        ResultSet rs = ServiceService.getServicesByOwnerID(1);
+        //ResultSet rs = ServiceService.getServicesByOwnerID(1);
+
+        Preferences pre = Preferences.userRoot();
+        int ID = pre.getInt("id", 0);
+        ResultSet rs = ServiceService.getServicesByOwnerID(ID);
 
         List<Service> serviceList = new ArrayList<>();
         try {

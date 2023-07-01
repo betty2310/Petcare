@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class DeletePetController implements Initializable {
 
@@ -47,7 +48,9 @@ public class DeletePetController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Pet> petList = PetService.getPetsByOwnerID(1);
+        Preferences pre = Preferences.userRoot();
+        int id = pre.getInt("id", 0);
+        List<Pet> petList = PetService.getPetsByOwnerID(id);
         ObservableList<Pet> petObservableList = FXCollections.observableArrayList(petList);
         petChoiceBox.setItems(petObservableList);
         petChoiceBox.getSelectionModel().selectFirst();

@@ -7,6 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
@@ -17,7 +18,7 @@
    <left>
       <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #5E81AC;" stylesheets="@../styles/navigation-styles.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="-1.0" layoutY="88.0" prefHeight="518.0" prefWidth="191.0" spacing="30.0" style="-fx-background-color: transparent;">
+            <VBox layoutX="-1.0" layoutY="88.0" prefHeight="509.0" prefWidth="191.0" spacing="30.0" style="-fx-background-color: transparent;">
                <children>
                   <Button id="menuButton" fx:id="buttonPet" mnemonicParsing="false" onAction="#switchToPet" prefHeight="48.0" prefWidth="191.0" text="Thú cưng" textAlignment="CENTER" textFill="WHITE">
                      <font>
@@ -35,6 +36,12 @@
                      </font>
                   </Button>
                   <Button fx:id="buttonStatistics" mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="48.0" prefWidth="191.0" text="Thống kê" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Pane prefHeight="94.0" prefWidth="191.0" />
+                  <Button id="menuButton" fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="48.0" prefWidth="191.0" text="Đăng xuất" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

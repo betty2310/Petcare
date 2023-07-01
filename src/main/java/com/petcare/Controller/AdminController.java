@@ -57,27 +57,21 @@ public class AdminController implements Initializable {
     private Button buttonStatistics;
 
     //Save user role
-    private static final Preferences userPreferences = Preferences.userRoot();
-    public static final String userRole = userPreferences.get("role", "");
-    public static final String userName = userPreferences.get("username", "");
     private final ViewUtils viewUtils = new ViewUtils();
     private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
-
 
     public AdminController() throws SQLException {
     }
 
     public void switchToDashboard(ActionEvent event) throws IOException {
-
-
         viewUtils.changeScene(event, ADMIN_VIEW_FXML);
-
     }
 
     public void switchToPet() throws IOException {
         viewUtils.changeAnchorPane(basePane, PET_VIEW_FXML);
 
     }
+
     public void switchToService() throws IOException {
         if(userRole.equals("admin")){
             viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
@@ -91,15 +85,27 @@ public class AdminController implements Initializable {
     public void switchToMedical() throws IOException {
         viewUtils.changeAnchorPane(basePane, MEDICAL_APPOINTMENT_VIEW_FXML);
     }
+
     public void switchToStatistics() throws IOException {
-        viewUtils.changeAnchorPane(basePane, STATISTICS_VIEW_FXML );
+        viewUtils.changeAnchorPane(basePane, STATISTICS_VIEW_FXML);
     }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+        viewUtils.changeScene(event, HOME_VIEW_FXML);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(1));
-        usernameLabel.setText("" + OwnerService.getNameFromID(1));
-        numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(1));
-        if(userRole.equals("admin")){
+        Preferences pre = Preferences.userRoot();
+        String role = pre.get("role", "");
+        if (role.equals("chunuoi")) {
+            int id = Integer.parseInt(pre.get("id", ""));
+            numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(id));
+            usernameLabel.setText("" + OwnerService.getNameFromID(id));
+            numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(id));
+        }
+        if (role.equals("admin")) {
             buttonMedicalAppointment.setVisible(true);
             buttonStatistics.setVisible(true);
         }
