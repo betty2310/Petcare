@@ -26,6 +26,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 import static com.petcare.Constants.FXMLConstants.SERVICE_HOTEL_VIEW_FXML;
 
@@ -64,7 +65,9 @@ public class ServiceController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ResultSet rs = ServiceService.getServicesByOwnerID(1);
+        Preferences pre = Preferences.userRoot();
+        int ID = pre.getInt("id", 0);
+        ResultSet rs = ServiceService.getServicesByOwnerID(ID);
 
         List<Service> serviceList = new ArrayList<>();
 

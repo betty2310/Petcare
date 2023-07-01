@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.prefs.Preferences;
 
 public class AddPetController implements Initializable {
 
@@ -35,13 +36,15 @@ public class AddPetController implements Initializable {
 
     @FXML
     void addPet(ActionEvent event) {
+        Preferences pre = Preferences.userRoot();
+        int id = pre.getInt("id", 0);
         String name = nameInput.getText();
         String info = infoInput.getText();
         char gender = genderChoiceBox.getValue().charAt(0);
 
         int employeeID = getRandomNumber(1, 100);
 
-        Pet pet = new Pet(name, gender, info, 1, employeeID);
+        Pet pet = new Pet(name, gender, info, id, employeeID);
         int res = PetService.addPet(pet);
         if (res == 1) {
             stage.setText("Pet added successfully!");

@@ -9,6 +9,10 @@ class AddPetControllerTest {
     void validatePetName() {
         var controller = new AddPetController();
         assertTrue(controller.isNameValid("abc"));
-        assertFalse(controller.isNameValid("asdf23"));
+    }
+    @Test
+    void validateWrongPetName() {
+        var controller = new AddPetController();
+        assertFalse(controller.isNameValid("abc123"));
     }
 }
