@@ -1,39 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceController">
+<AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceController">
     <children>
         <Text layoutX="18.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các dịch vụ hiện có" textAlignment="CENTER" wrappingWidth="267.4961242675781">
             <font>
                 <Font name="System Bold" size="26.0" />
             </font>
         </Text>
-      <HBox layoutX="165.0" layoutY="106.0" prefHeight="100.0" prefWidth="380.0" spacing="20.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #BF616A;" text="Khám bệnh" textAlignment="CENTER" textFill="#2e3440" wrapText="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #EBCB8B;" text="Chăm sóc sắc đẹp" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#bookService" prefHeight="192.0" prefWidth="211.0" style="-fx-background-color: #B48EAD;" text="Khách sạn thú cưng" textAlignment="CENTER" wrapText="true">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
       <TableView fx:id="table" layoutX="18.0" layoutY="298.0" prefHeight="264.0" prefWidth="672.0" stylesheets="@../styles/table.css">
         <columns>
           <TableColumn fx:id="typeColumn" prefWidth="129.40107345581055" text="Tên dịch vụ" />
@@ -44,5 +27,21 @@
             <TableColumn fx:id="endColumn" prefWidth="141.80731201171875" text="Ngày kết thúc" />
         </columns>
       </TableView>
+      <ScrollPane layoutX="125.0" layoutY="66.0" prefHeight="222.0" prefWidth="458.0">
+         <content>
+            <GridPane fx:id="gridType" hgap="10.0" prefHeight="310.0" prefWidth="437.0" vgap="10.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="135.0" minHeight="10.0" prefHeight="133.8172607421875" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="133.1827392578125" minHeight="10.0" prefHeight="133.1827392578125" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>

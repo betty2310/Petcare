@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.AdminController">
    <left>
       <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #5E81AC;" stylesheets="@../styles/navigation-styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -29,7 +29,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="buttonMedicalAppointment" mnemonicParsing="false" onAction="#switchToMedical" prefHeight="48.0" prefWidth="191.0" text="hẹn khám bệnh" textFill="WHITE" visible="false">
+                  <Button fx:id="buttonMedicalAppointment" mnemonicParsing="false" onAction="#switchToMedical" prefHeight="48.0" prefWidth="191.0" text="Hẹn khám bệnh" textFill="WHITE" visible="false">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

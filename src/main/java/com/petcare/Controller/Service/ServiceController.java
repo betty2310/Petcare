@@ -3,6 +3,7 @@ package com.petcare.Controller.Service;
 import com.petcare.HomeApplication;
 import com.petcare.Model.Service;
 import com.petcare.Services.ServiceService;
+import com.petcare.Services.TypeService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,10 +12,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,6 +29,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import static com.petcare.Constants.FXMLConstants.SERVICE_HOTEL_VIEW_FXML;
@@ -39,11 +44,13 @@ public class ServiceController implements Initializable {
 
     @FXML
     private AnchorPane basePane;
+    @FXML
+    private GridPane gridType;
 
 
 
     @FXML
-    void bookService(ActionEvent event) {
+    void bookService() {
         FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SERVICE_HOTEL_VIEW_FXML));
         try {
             Parent root = fxmlLoader.load();
@@ -60,10 +67,37 @@ public class ServiceController implements Initializable {
             e.printStackTrace();
         }
     }
+    private String getRandomColorCode(Random random) {
+        // Tạo một màu ngẫu nhiên
+        int red = random.nextInt(256);
+        int green = random.nextInt(256);
+        int blue = random.nextInt(256);
 
-
+        return String.format("#%02x%02x%02x", red, green, blue); // Định dạng mã màu hex
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        List<String> types = TypeService.getTypes();
+        int rowIndex = 0;
+        int colIndex = 0;
+        Random random = new Random();
+
+        for (String type : types) {
+            Button button = new Button(type);
+            Font font = new Font("System", 18);
+            button.setFont(font);
+            button.setStyle("-fx-background-color: " + getRandomColorCode(random));
+            button.setOnMouseClicked(event -> bookService());
+            button.setPrefWidth(211);
+            button.setPrefHeight(192);
+            gridType.add(button, colIndex, rowIndex);
+            colIndex++;
+            if (colIndex > 2) {
+                colIndex = 0;
+                rowIndex++;
+            }
+        }
+
         ResultSet rs = ServiceService.getServicesByOwnerID(1);
 
         List<Service> serviceList = new ArrayList<>();

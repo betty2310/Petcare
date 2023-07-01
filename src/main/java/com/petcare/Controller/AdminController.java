@@ -79,7 +79,12 @@ public class AdminController implements Initializable {
 
     }
     public void switchToService() throws IOException {
-        viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
+        if(userRole.equals("admin")){
+            viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
+        }
+        else {
+            viewUtils.changeAnchorPane(basePane, SERVICE_VIEW_FXML);
+        }
     }
 
 
