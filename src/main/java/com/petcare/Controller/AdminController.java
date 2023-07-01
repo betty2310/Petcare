@@ -73,7 +73,9 @@ public class AdminController implements Initializable {
     }
 
     public void switchToService() throws IOException {
-        if(userRole.equals("admin")){
+        Preferences pre = Preferences.userRoot();
+        String role = pre.get("role", "");
+        if(role.equals("admin")){
             viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
         }
         else {

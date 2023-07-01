@@ -3,10 +3,7 @@ package com.petcare.Controller.Service;
 import com.petcare.Controller.Service.ServiceController;
 import com.petcare.Model.Pet;
 import com.petcare.Model.Service;
-import com.petcare.Services.PetService;
-import com.petcare.Services.TypeService;
-import com.petcare.Services.RecordService;
-import com.petcare.Services.ServiceService;
+import com.petcare.Services.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
@@ -40,6 +39,10 @@ public class BookServiceController implements Initializable {
 
     @FXML
     private DatePicker startDate;
+    @FXML
+    private HBox idHbox;
+    @FXML
+    private TextField idText;
 
     @FXML
     void addService(ActionEvent event) {
@@ -50,38 +53,66 @@ public class BookServiceController implements Initializable {
             Date start = Date.valueOf(startDate.getValue());
             Date end = Date.valueOf(endDate.getValue());
             Date today = new Date(System.currentTimeMillis());
+
             if (serviceName == null || start == null || end == null || pet == null) {
                 log.setText("Please fill all the fields");
-
             } else {
                 Preferences pre = Preferences.userRoot();
-                int ID = pre.getInt("id", 0);
-                Service service = new Service(serviceName, today, start, end, ID);
-                int id = ServiceService.addService(service);
-                if (id == -1) {
-                    log.setText("Service not added");
+                String role = pre.get("role", "");
+                if (role.equals("chunuoi")) {
+                    int ID = pre.getInt("id", 0);
+                    Service service = new Service(serviceName, today, start, end, ID);
+                    int id = ServiceService.addService(service);
+                    if (id == -1) {
+                        log.setText("Service not added");
+                    } else {
+                        RecordService.addRecord(id, pet.getID());
+                        log.setText("Service added");
+                        log.setFill(javafx.scene.paint.Color.GREEN);
+                    }
                 } else {
-                    RecordService.addRecord(id, pet.getID());
-                    log.setText("Service added");
-                    log.setFill(javafx.scene.paint.Color.GREEN);
+                    String newValue = idText.getText();
+                    int ID = Integer.parseInt(newValue);
+                    Service service = new Service(serviceName, today, start, end, ID);
+                    int id = ServiceService.addService(service);
+                    if (id == -1) {
+                        log.setText("Service not added");
+                    } else {
+                        RecordService.addRecord(id, pet.getID());
+                        log.setText("Service added");
+                        log.setFill(javafx.scene.paint.Color.GREEN);
+                    }
+//                    });
                 }
             }
-        } else {
+        }else {
             log.setText("Please fill all the fields");
         }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        Preferences pre = Preferences.userRoot();
-        int id = pre.getInt("id", 0);
-        List<Pet> petList = PetService.getPetsByOwnerID(id);
-        ObservableList<Pet> petObservableList = FXCollections.observableArrayList(petList);
-        petChoice.setItems(petObservableList);
-        petChoice.getSelectionModel().selectFirst();
-
         ObservableList<String> serviceList = FXCollections.observableArrayList(getTypes());
         serviceChoiceBox.setItems(serviceList);
         serviceChoiceBox.getSelectionModel().selectFirst();
+        Preferences pre = Preferences.userRoot();
+        String role = pre.get("role", "");
+        if (role.equals("chunuoi")) {
+            idHbox.setVisible(false);
+            int id = pre.getInt("id", 0);
+            List<Pet> petList = PetService.getPetsByOwnerID(id);
+            ObservableList<Pet> petObservableList = FXCollections.observableArrayList(petList);
+            petChoice.setItems(petObservableList);
+            petChoice.getSelectionModel().selectFirst();
+        }
+        if (role.equals("admin")) {
+            idText.textProperty().addListener((observable, oldValue, newValue) -> {
+                int id = Integer.parseInt(newValue);
+                List<Pet> petList = PetService.getPetsByOwnerID(id);
+                ObservableList<Pet> petObservableList = FXCollections.observableArrayList(petList);
+                petChoice.setItems(petObservableList);
+                petChoice.getSelectionModel().selectFirst();
+            });
+        }
     }
 }
