@@ -50,6 +50,11 @@ public class AdminController implements Initializable {
     @FXML
     private Label usernameLabel;
 
+    @FXML
+    private Button buttonMedicalAppointment;
+
+    @FXML
+    private Button buttonStatistics;
 
     //Save user role
     private static final Preferences userPreferences = Preferences.userRoot();
@@ -58,11 +63,15 @@ public class AdminController implements Initializable {
     private final ViewUtils viewUtils = new ViewUtils();
     private Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
 
+
     public AdminController() throws SQLException {
     }
 
     public void switchToDashboard(ActionEvent event) throws IOException {
+
+
         viewUtils.changeScene(event, ADMIN_VIEW_FXML);
+
     }
 
     public void switchToPet() throws IOException {
@@ -72,12 +81,23 @@ public class AdminController implements Initializable {
     public void switchToService() throws IOException {
         viewUtils.changeAnchorPane(basePane, SERVICE_VIEW_FXML);
     }
-    
+
+
+    public void switchToMedical() throws IOException {
+        viewUtils.changeAnchorPane(basePane, MEDICAL_APPOINTMENT_VIEW_FXML);
+    }
+    public void switchToStatistics() throws IOException {
+        viewUtils.changeAnchorPane(basePane, STATISTICS_VIEW_FXML );
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(1));
         usernameLabel.setText("" + OwnerService.getNameFromID(1));
         numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(1));
+        if(userRole.equals("admin")){
+            buttonMedicalAppointment.setVisible(true);
+            buttonStatistics.setVisible(true);
+        }
     }
 
 }
