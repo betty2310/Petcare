@@ -81,7 +81,14 @@ public class AdminController implements Initializable {
     public void switchToService() throws IOException {
         viewUtils.changeAnchorPane(basePane, SERVICE_VIEW_FXML);
     }
-    
+
+
+    public void switchToMedical() throws IOException {
+        viewUtils.changeAnchorPane(basePane, MEDICAL_APPOINTMENT_VIEW_FXML);
+    }
+    public void switchToStatistics() throws IOException {
+        viewUtils.changeAnchorPane(basePane, STATISTICS_VIEW_FXML );
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(1));

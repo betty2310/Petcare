@@ -1,6 +1,5 @@
 package com.petcare.Model;
 
-import java.sql.Time;
 import java.sql.Date;
 
 public class Service {
@@ -12,6 +11,7 @@ public class Service {
     private Date startTime;
     private Date endTime;
     private int ownerId;
+
 
     public Service() {
     }
@@ -25,6 +25,7 @@ public class Service {
         this.startTime = startTime;
         this.endTime = endTime;
         this.ownerId = ownerId;
+
     }
 
     public Service(String type, Date today, Date startTime, Date endTime, int ownerId) {
@@ -33,6 +34,7 @@ public class Service {
         this.startTime = startTime;
         this.endTime = endTime;
         this.ownerId = ownerId;
+
     }
 
     // Getter and setter methods
@@ -100,5 +102,7 @@ public class Service {
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
+
+
 }
 
