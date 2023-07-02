@@ -1,6 +1,7 @@
 package com.petcare.Controller.Service;
 
 import com.petcare.Controller.Pet.DeletePetController;
+import com.petcare.Controller.Pet.PetDetailController;
 import com.petcare.HomeApplication;
 import com.petcare.Model.Service;
 import com.petcare.Services.ServiceService;
@@ -25,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -51,6 +53,10 @@ public class AdminServiceController implements Initializable {
 
     @FXML
     private TableView<Service> table;
+    @FXML
+    private Button fixButton;
+    @FXML
+    private Button deleteButton;
 
     @FXML
     void bookService() {
@@ -114,32 +120,38 @@ public class AdminServiceController implements Initializable {
 
         return String.format("#%02x%02x%02x", red, green, blue); // Định dạng mã màu hex
     }
+    private void setFixButton() {
+        fixButton.setOnMouseClicked(event -> {
+            Service selectedService = table.getSelectionModel().getSelectedItem();
+            if (selectedService != null) {
+                FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SERVICE_DETAIL_VIEW_FXML));
+                try {
+                    Parent root = fxmlLoader.load();
+                    ServiceDetailController popupController = fxmlLoader.getController();
+                    popupController.setService(selectedService);
+
+                    popupController.setId(Integer.toString(selectedService.getId()));
+                    popupController.setType(selectedService.getType());
+                    popupController.setTrangthai(selectedService.getState());
+                    popupController.setPrice(selectedService.getPrice());
+                    popupController.setStartDate(selectedService.getStartTime());
+                    popupController.setEndDate(selectedService.getEndTime());
+
+                    Stage popupStage = new Stage();
+                    popupStage.initModality(Modality.APPLICATION_MODAL);
+                    popupStage.setTitle("Service Detail");
+                    popupStage.setScene(new Scene(root));
+                    popupStage.showAndWait();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
        List<String> types = TypeService.getTypes();
-//        int row = 0, column = 0;
-//        for(String type : types) {
-//            String name = type.toString();
-////            String info = pet.getInfo();
-//
-//            FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_CARD_VIEW_FXML));
-//            try {
-//                AnchorPane petCard = fxmlLoader.load();
-//                PetCard petcard = fxmlLoader.getController();
-//                petcard.setInfoLabel("Info: "+ info);
-//                petcard.petButton.setOnMouseClicked(event -> handlePetCardClick(pet));
-//                petcard.setNameLabel(name);
-//                gridPet.add(petCard, column, row);
-//                column++;
-//                if (column == 3) {
-//                    column = 0;
-//                    row++;
-//                }
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
-//        }
         int rowIndex = 0;
         int colIndex = 0;
         Random random = new Random();
@@ -150,11 +162,7 @@ public class AdminServiceController implements Initializable {
             button.setFont(font);
             button.setStyle("-fx-background-color: " + getRandomColorCode(random)); // Màu nền ngẫu nhiên
             button.setOnMouseClicked(event -> bookService());
-            // Thêm button vào GridPane
-//            gridType.setConstraints(button, colIndex, rowIndex);
-//            gridType.setFillWidth(button, true); // Button fit với chiều rộng cột
-//            gridType.setFillHeight(button, true);
-            button.setPrefWidth(211); // Chiều rộng
+            button.setPrefWidth(211);
             button.setPrefHeight(192);
             gridType.add(button, colIndex, rowIndex);
             colIndex++;
@@ -163,6 +171,8 @@ public class AdminServiceController implements Initializable {
                 rowIndex++;
             }
         }
+
+        setFixButton();
 
         ResultSet rs = ServiceService.getServices();
 

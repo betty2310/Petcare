@@ -22,6 +22,7 @@ public class ServiceService {
             throw new RuntimeException("Error retrieving service ets for owner ID: " + ownerID, e);
         }
     }
+
     public static int getNumberOfServicesByOwnerID(int ownerID) {
         int n = 0;
         String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Service WHERE owner_id = ?";
@@ -66,7 +67,8 @@ public class ServiceService {
             throw new RuntimeException("Error adding service: " + service, e);
         }
     }
-    public static ResultSet getServices(){
+
+    public static ResultSet getServices() {
         String SELECT_QUERY = "SELECT * FROM Service ";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
@@ -75,6 +77,65 @@ public class ServiceService {
             return preparedStatement.executeQuery();
         } catch (SQLException e) {
             throw new RuntimeException("Error retrieving service ets ", e);
+        }
+    }
+
+    //update
+    public static int updateType(Service service, String type) {
+        String UPDATE_QUERY = "UPDATE service SET type = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setString(1, type);
+            preparedStatement.setInt(2, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update service: " + service, e);
+        }
+    }
+
+    public static int updateTrangthai(Service service, String state) {
+        String UPDATE_QUERY = "UPDATE service SET State = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setString(1, state);
+            preparedStatement.setInt(2, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update service: " + service, e);
+        }
+    }
+
+    public static int updatePrice(Service service, String price) {
+        String UPDATE_QUERY = "UPDATE service SET Price = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setString(1, price);
+            preparedStatement.setInt(2, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update service: " + service, e);
+        }
+    }
+    public static int updateStartTime(Service service, Date startDate) {
+        String UPDATE_QUERY = "UPDATE service SET Start_Time = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setDate(1, startDate);
+            preparedStatement.setInt(2, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update service: " + service, e);
+        }
+    }
+    public static int updateEndTime(Service service, Date endDate) {
+        String UPDATE_QUERY = "UPDATE service SET End_Time = ? WHERE id = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(UPDATE_QUERY)) {
+            preparedStatement.setDate(1, endDate);
+            preparedStatement.setInt(2, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error update service: " + service, e);
         }
     }
 }
