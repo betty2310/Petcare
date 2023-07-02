@@ -13,8 +13,9 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.AdminServiceController">
     <children>
+      <Button fx:id="deleteButton" layoutX="596.0" layoutY="268.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Xóa" />
       <Button fx:id="add_service_id" layoutX="596.0" layoutY="73.0" mnemonicParsing="false" onAction="#add" text="Thêm dịch vụ" />
-      <Button layoutX="596.0" layoutY="125.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="87.0" text="Xóa dịch vụ" />
+      <Button layoutX="596.0" layoutY="116.0" mnemonicParsing="false" onAction="#delete" prefHeight="26.0" prefWidth="87.0" text="Xóa dịch vụ" />
         <Text layoutX="18.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Các dịch vụ hiện có" textAlignment="CENTER" wrappingWidth="267.4961242675781">
             <font>
                 <Font name="System Bold" size="26.0" />
@@ -47,5 +48,7 @@
             </GridPane>
          </content>
       </ScrollPane>
+      <Button fx:id="fixButton" layoutX="596.0" layoutY="228.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="87.0" text="Sửa" />
+      <Text fx:id="noti" layoutX="19.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="566.4000000000001" />
     </children>
 </AnchorPane>

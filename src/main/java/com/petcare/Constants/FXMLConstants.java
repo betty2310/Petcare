@@ -23,4 +23,5 @@ public class FXMLConstants {
     public static String MEDICAL_APPOINTMENT_VIEW_FXML = "/com/petcare/views/medical-appointment-view.fxml";
 
     public static String STATISTICS_VIEW_FXML = "/com/petcare/views/statistics-view.fxml";
+    public static String SERVICE_DETAIL_VIEW_FXML = "/com/petcare/views/service-detail-popup.fxml";
 }
