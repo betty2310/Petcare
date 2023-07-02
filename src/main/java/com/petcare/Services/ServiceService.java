@@ -67,6 +67,16 @@ public class ServiceService {
             throw new RuntimeException("Error adding service: " + service, e);
         }
     }
+    public static int deleteService(Service service){
+        String DELETE_QUERY = "DELETE from service WHERE id = ? ";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(DELETE_QUERY)) {
+            preparedStatement.setInt(1, service.getId());
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException("Error delete service: " + service, e);
+        }
+    }
 
     public static ResultSet getServices() {
         String SELECT_QUERY = "SELECT * FROM Service ";

@@ -4,6 +4,7 @@ import com.petcare.Controller.Pet.DeletePetController;
 import com.petcare.Controller.Pet.PetDetailController;
 import com.petcare.HomeApplication;
 import com.petcare.Model.Service;
+import com.petcare.Services.PetService;
 import com.petcare.Services.ServiceService;
 import com.petcare.Services.TypeService;
 import javafx.collections.FXCollections;
@@ -21,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.layout.GridPane;
@@ -57,6 +59,9 @@ public class AdminServiceController implements Initializable {
     private Button fixButton;
     @FXML
     private Button deleteButton;
+    @FXML
+    private Text noti;
+
 
     @FXML
     void bookService() {
@@ -129,8 +134,8 @@ public class AdminServiceController implements Initializable {
                     Parent root = fxmlLoader.load();
                     ServiceDetailController popupController = fxmlLoader.getController();
                     popupController.setService(selectedService);
-
-                    popupController.setId(Integer.toString(selectedService.getId()));
+                    popupController.setServiceId(Integer.toString(selectedService.getId()));
+                    popupController.setId(Integer.toString(selectedService.getOwnerId()));
                     popupController.setType(selectedService.getType());
                     popupController.setTrangthai(selectedService.getState());
                     popupController.setPrice(selectedService.getPrice());
@@ -144,6 +149,26 @@ public class AdminServiceController implements Initializable {
                     popupStage.showAndWait();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
+                }
+            }
+        });
+    }
+    private void setDeleteButton(){
+        deleteButton.setOnMouseClicked(event -> {
+            Service selectedService = table.getSelectionModel().getSelectedItem();
+            if (selectedService != null) {
+                try {
+                    int res = ServiceService.deleteService(selectedService);
+                    if (res == 1) {
+                        noti.setText("Service deleted successfully!");
+                    } else {
+                        noti.setFill(javafx.scene.paint.Color.RED);
+                        noti.setText("Service deleted failed!");
+                    }
+
+                } catch (RuntimeException e) {
+                    noti.setFill(javafx.scene.paint.Color.RED);
+                    noti.setText(e.getMessage());
                 }
             }
         });
@@ -173,6 +198,7 @@ public class AdminServiceController implements Initializable {
         }
 
         setFixButton();
+        setDeleteButton();
 
         ResultSet rs = ServiceService.getServices();
 

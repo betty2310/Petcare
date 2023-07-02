@@ -2,10 +2,14 @@ package com.petcare.Controller.Service;
 
 import com.petcare.Model.Pet;
 import com.petcare.Model.Service;
+import com.petcare.Model.Type;
 import com.petcare.Services.ServiceService;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,11 +22,16 @@ import java.time.ZoneId;
 //import java.util.Date;
 import java.util.ResourceBundle;
 
+import static com.petcare.Services.TypeService.getTypes;
+
 public class ServiceDetailController implements Initializable {
     private Service service;
 
     @FXML
     private DatePicker endDate;
+
+    @FXML
+    private TextField idServiceText;
 
     @FXML
     private TextField idText;
@@ -39,15 +48,16 @@ public class ServiceDetailController implements Initializable {
     @FXML
     private TextField trangthaiText;
 
+//    @FXML
+//    private TextField typeText;
     @FXML
-    private TextField typeText;
+    private ChoiceBox<String> typeChoice;
 
     public void setService(Service service) {
         this.service = service;
     }
-    public void setType(String info) {
-        typeText.setText(info);
-    }
+    public void setType(String info) {typeChoice.setValue(info);}
+    public void setServiceId(String info) {idServiceText.setText(info);}
     public void setId(String info) {idText.setText(info);}
     public void setTrangthai(String info) {trangthaiText.setText(info);}
     public void setPrice(String info) {priceText.setText(info);}
@@ -62,7 +72,7 @@ public class ServiceDetailController implements Initializable {
 //    }
     @FXML
     void onUpdate(ActionEvent event) {
-        String updatedType = this.typeText.getText();
+        String updatedType = this.typeChoice.getValue();
 //        String Id = this.idText.getText();
 //        int updatedID = Integer.parseInt(Id);
         String updatedTt = this.trangthaiText.getText();
@@ -109,6 +119,8 @@ public class ServiceDetailController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        ObservableList<String> serviceList = FXCollections.observableArrayList(getTypes());
+        typeChoice.setItems(serviceList);
+        typeChoice.getSelectionModel().selectFirst();
     }
 }
