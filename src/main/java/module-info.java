@@ -17,4 +17,6 @@ module com.petcare {
     opens com.petcare.Constants to javafx.fxml;
     exports com.petcare.Utils;
     opens com.petcare.Utils to javafx.fxml;
+    exports com.petcare.Controller.Owner;
+    opens com.petcare.Controller.Owner to javafx.fxml;
 }

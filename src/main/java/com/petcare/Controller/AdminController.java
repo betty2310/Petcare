@@ -68,7 +68,16 @@ public class AdminController implements Initializable {
     }
 
     public void switchToPet() throws IOException {
-        viewUtils.changeAnchorPane(basePane, PET_VIEW_FXML);
+        Preferences pre = Preferences.userRoot();
+        String role = pre.get("role", "");
+        if (role.equals("chunuoi")) {
+            viewUtils.changeAnchorPane(basePane, PET_VIEW_FXML);
+        }
+        if (role.equals("admin")) {
+            viewUtils.changeAnchorPane(basePane, OWNER_VIEW_FXML);
+
+        }
+
 
     }
 
@@ -110,6 +119,7 @@ public class AdminController implements Initializable {
         if (role.equals("admin")) {
             buttonMedicalAppointment.setVisible(true);
             buttonStatistics.setVisible(true);
+            buttonPet.setText("Chủ nuôi");
         }
     }
 

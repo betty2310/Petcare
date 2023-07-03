@@ -1,7 +1,12 @@
-package com.petcare.Controller.Pet;
+package com.petcare.Controller.Owner;
 
+import com.petcare.Controller.Owner.OwnerCard;
+import com.petcare.Controller.Pet.AddPetController;
+import com.petcare.Controller.Pet.DeletePetController;
+import com.petcare.Controller.Pet.PetDetailController;
 import com.petcare.HomeApplication;
-import com.petcare.Model.Pet;
+import com.petcare.Model.Owner;
+import com.petcare.Services.OwnerService;
 import com.petcare.Services.PetService;
 import com.petcare.Utils.ViewUtils;
 import javafx.event.ActionEvent;
@@ -23,7 +28,7 @@ import java.util.prefs.Preferences;
 
 import static com.petcare.Constants.FXMLConstants.*;
 
-public class PetController implements Initializable {
+public class OwnerController implements Initializable {
 
     private final ViewUtils viewUtils = new ViewUtils();
 
@@ -42,7 +47,15 @@ public class PetController implements Initializable {
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("Add Pet!");
+            Preferences pre = Preferences.userRoot();
+            int id = pre.getInt("id", 0);
+            String role = pre.get("role", "");
+            if(role == "chunuoi") {
+                popupStage.setTitle("Add Pet!");
+
+            } else {
+                popupStage.setTitle("Thêm chủ nuôi!");
+            }
             popupStage.setScene(new Scene(root));
             popupStage.showAndWait();
 
@@ -76,18 +89,20 @@ public class PetController implements Initializable {
         Preferences pre = Preferences.userRoot();
         String role = pre.get("role", "");
         int id = pre.getInt("id", 0);
-        System.out.println(id);
-        List<Pet> pets = PetService.getPetsByOwnerID(id);
+        List<Owner> pets = OwnerService.getOwner();
         int row = 0, column = 0;
-        for(Pet pet : pets) {
+        for(Owner pet : pets) {
             String name = pet.getName();
-            String info = pet.getInfo();
+            String info = pet.getPhone();
+            int ownerid = pet.getId();
 
-            FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_CARD_VIEW_FXML));
+            int numberOfPets = PetService.getNumberOfPetsByOwnerID(ownerid);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(OWNER_CARD_VIEW_FXML));
             try {
                 AnchorPane petCard = fxmlLoader.load();
-                PetCard petcard = fxmlLoader.getController();
-                petcard.setInfoLabel("Info: "+ info);
+                OwnerCard petcard = fxmlLoader.getController();
+                petcard.setInfoLabel("SDT: "+ info + "\nPet: " +numberOfPets);
                 petcard.petButton.setOnMouseClicked(event -> handlePetCardClick(pet));
                 petcard.setNameLabel(name);
                 gridPet.add(petCard, column, row);
@@ -103,20 +118,21 @@ public class PetController implements Initializable {
 
     }
 
-    private void handlePetCardClick(Pet pet) {
-        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(PET_DETAIL_VIEW_FXML));
+    private void handlePetCardClick(Owner pet) {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(OWNER_DETAIL_VIEW_FXML));
         try {
             Parent root = fxmlLoader.load();
-            PetDetailController popupController = fxmlLoader.getController();
-            popupController.setPet(pet);
-
-            popupController.setNameLabel(pet.getName());
-            popupController.setInfoLabel(pet.getInfo());
-            popupController.setTable();
+            OwnerDetailController popupController = fxmlLoader.getController();
+            popupController.Owner_ID = pet.getId();
+//            popupController.setPet(pet);
+//
+//            popupController.setNameLabel(pet.getName());
+//            popupController.setInfoLabel(pet.getInfo());
+//            popupController.setTable();
 
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
-            popupStage.setTitle("Pet Detail");
+            popupStage.setTitle("Owner Detail");
             popupStage.setScene(new Scene(root));
             popupStage.showAndWait();
 

@@ -27,4 +27,26 @@ public class OwnerService {
         }
         return name;
     }
+    public static List<Owner> getOwner() {
+        List<Owner> pets = new ArrayList<>();
+        String SELECT_QUERY = "SELECT * FROM owner LIMIT 9";
+        try {
+            Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+            PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
+//            preparedStatement.setInt(1, ownerID);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int ID = resultSet.getInt("ID");
+                    String name = resultSet.getString("Name");
+                    String info = resultSet.getString("Phone");
+                    Owner o = new Owner(ID, name, info);
+                    pets.add(o);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving pets for owner ID: ", e);
+        }
+        return pets;
+    }
 }
