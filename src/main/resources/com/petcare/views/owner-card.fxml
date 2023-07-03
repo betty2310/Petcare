@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="91.0" prefWidth="192.0" style="-fx-background-color: #D8DEE9; -fx-border-radius: 10px;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Owner.OwnerCard">
+   <children>
+      <Button fx:id="petButton" mnemonicParsing="false" prefHeight="93.0" prefWidth="191.0" style="-fx-background-color: transparent;">
+         <graphic>
+            <HBox alignment="CENTER_LEFT" prefHeight="108.0" prefWidth="193.0" spacing="10.0">
+               <children>
+                  <VBox prefHeight="71.0" prefWidth="175.0">
+                     <children>
+                        <Label fx:id="nameLabel" prefHeight="23.0" prefWidth="126.0" text="Name" wrapText="true">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="infoLabel" alignment="TOP_LEFT" prefHeight="55.0" prefWidth="165.0" wrapText="true" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </HBox>
+         </graphic>
+      </Button>
+   </children>
+</AnchorPane>

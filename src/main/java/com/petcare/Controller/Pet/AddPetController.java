@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -26,9 +27,12 @@ public class AddPetController implements Initializable {
 
     @FXML
     private TextField nameInput;
+    @FXML
+    private Label titleLabel;
 
     @FXML
     private Text stage;
+    public String role;
 
     boolean isNameValid(String name) {
         return name.matches("[a-zA-Z]+");
@@ -61,6 +65,14 @@ public class AddPetController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        Preferences pre = Preferences.userRoot();
+        int id = pre.getInt("id", 0);
+        role = pre.get("role", "");
+        if(role.equals("admin")) {
+            titleLabel.setText("Thêm chủ nuôi");
+        }
+
         ObservableList<String> genderList = FXCollections.observableArrayList("F", "M");
         genderChoiceBox.setItems(genderList);
         genderChoiceBox.getSelectionModel().selectFirst();

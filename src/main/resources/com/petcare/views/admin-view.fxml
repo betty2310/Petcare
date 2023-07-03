@@ -100,7 +100,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" text="user name" textFill="#1bbde4">
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" text="Admin" textFill="#1bbde4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
