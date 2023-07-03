@@ -6,13 +6,13 @@ public class Record {
     private  String status;
     private String medication;
 
-    private int petID;
+    private String pet_Name;
 
-    public Record(int ID, String status, String medication, int petID) {
+    public Record(int ID, String status, String medication, String pet_Name) {
         this.ID = ID;
         this.status = status;
         this.medication = medication;
-        this.petID = petID;
+        this.pet_Name = pet_Name;
     }
 
     public Record(){
@@ -42,11 +42,11 @@ public class Record {
         this.medication = medication;
     }
 
-    public int getPetID() {
-        return petID;
+    public String getPet_Name() {
+        return pet_Name;
     }
 
-    public void setPetID(int petID) {
-        this.petID = petID;
+    public void setPet_Name(String pet_Name) {
+        this.pet_Name = pet_Name;
     }
 }
