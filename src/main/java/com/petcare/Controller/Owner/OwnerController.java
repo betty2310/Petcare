@@ -134,7 +134,11 @@ public class OwnerController implements Initializable {
             Parent root = fxmlLoader.load();
             OwnerDetailController popupController = fxmlLoader.getController();
             Owner selectedOwner = table.getSelectionModel().getSelectedItem();
-
+            popupController.sdt.setText( selectedOwner.getPhone());
+            popupController.name.setText(selectedOwner.getName());
+            popupController.nPets.setText(String.valueOf(PetService.getNumberOfPetsByOwnerID(selectedOwner.getId())));
+            popupController.owner = selectedOwner;
+            popupController.setPetView();
             Stage popupStage = new Stage();
             popupStage.initModality(Modality.APPLICATION_MODAL);
             popupStage.setTitle("Chi tiết chủ nuôi " + selectedOwner.getName());

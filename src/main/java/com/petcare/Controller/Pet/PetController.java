@@ -4,6 +4,9 @@ import com.petcare.HomeApplication;
 import com.petcare.Model.Pet;
 import com.petcare.Services.PetService;
 import com.petcare.Utils.ViewUtils;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,13 +29,19 @@ import static com.petcare.Constants.FXMLConstants.*;
 
 public class PetController implements Initializable {
 
-    private final ViewUtils viewUtils = new ViewUtils();
-
     @FXML
     private AnchorPane basePane;
+    @FXML
+    public Text title;
 
     @FXML
     private GridPane gridPet;
+
+    private int ownerID;
+
+    public void setOwnerID(int ownerID) {
+        this.ownerID = ownerID;
+    }
 
     @FXML
     void add(ActionEvent event) {
@@ -73,11 +83,11 @@ public class PetController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Preferences pre = Preferences.userRoot();
-        String role = pre.get("role", "");
-        int id = pre.getInt("id", 0);
-        System.out.println(id);
-        List<Pet> pets = PetService.getPetsByOwnerID(id);
+//        petGrid();
+    }
+
+    public void petGrid() {
+        List<Pet> pets = PetService.getPetsByOwnerID(ownerID);
         int row = 0, column = 0;
         for(Pet pet : pets) {
             String name = pet.getName();
@@ -100,7 +110,6 @@ public class PetController implements Initializable {
                 throw new RuntimeException(e);
             }
         }
-
     }
 
     private void handlePetCardClick(Pet pet) {
