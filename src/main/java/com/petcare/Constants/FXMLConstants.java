@@ -13,6 +13,7 @@ public class FXMLConstants {
     public static String OWNER_VIEW_FXML = "/com/petcare/views/owner-view.fxml";
     public static String OWNER_DETAIL_VIEW_FXML = "/com/petcare/views/owner-detail-popup.fxml";
     public static String OWNER_CARD_VIEW_FXML = "/com/petcare/views/owner-card.fxml";
+    public static String OWNER_ADD_VIEW_FXML = "/com/petcare/views/owner-add-view.fxml";
 
 
 
