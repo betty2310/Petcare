@@ -29,7 +29,7 @@ public class OwnerService {
     }
     public static List<Owner> getOwner() {
         List<Owner> pets = new ArrayList<>();
-        String SELECT_QUERY = "SELECT * FROM owner LIMIT 9";
+        String SELECT_QUERY = "SELECT * FROM owner";
         try {
             Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY);
