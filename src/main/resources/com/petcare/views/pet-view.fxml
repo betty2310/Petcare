@@ -10,17 +10,17 @@
 
 <AnchorPane fx:id="basePane" prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Pet.PetController">
     <children>
-        <Text layoutX="38.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thú cưng của bạn" textAlignment="CENTER" wrappingWidth="219.77688598632812">
+        <Text fx:id="title" layoutX="14.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thú cưng của bạn" wrappingWidth="431.7768859863281">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Text>
-        <Button layoutX="468.0" layoutY="62.40234375" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #3f4d67;" text="Thêm mới" textFill="WHITE">
+        <Button fx:id="addButton" layoutX="468.0" layoutY="62.40234375" mnemonicParsing="false" onAction="#add" style="-fx-background-color: #5e81ac;" text="Thêm mới" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
         </Button>
-        <Button layoutX="573.0" layoutY="62.40234375" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #3f4d67;" text="Xoá" textFill="WHITE">
+        <Button fx:id="deleteButton" layoutX="573.0" layoutY="62.40234375" mnemonicParsing="false" onAction="#delete" prefHeight="28.0" prefWidth="58.0" style="-fx-background-color: #5e81ac;" text="Xoá" textFill="WHITE">
             <font>
                 <Font name="Segoe UI" size="14.0" />
             </font>
