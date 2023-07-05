@@ -84,7 +84,6 @@ public class OwnerDetailController implements Initializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     public void setTable() throws IOException {
