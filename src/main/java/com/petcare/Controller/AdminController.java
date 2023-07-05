@@ -1,12 +1,15 @@
 package com.petcare.Controller;
 
+import com.petcare.Controller.Pet.PetController;
 import com.petcare.Services.OwnerService;
 import com.petcare.Services.PetService;
 import com.petcare.Services.ServiceService;
 import com.petcare.Utils.ViewUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -72,6 +75,12 @@ public class AdminController implements Initializable {
         String role = pre.get("role", "");
         if (role.equals("chunuoi")) {
             viewUtils.changeAnchorPane(basePane, PET_VIEW_FXML);
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(PET_VIEW_FXML));
+            Node node = fxmlLoader.load();
+            basePane.getChildren().setAll(node);
+            PetController petController = fxmlLoader.getController();
+            petController.setOwnerID(Integer.parseInt(pre.get("id", "")));
+            petController.petGrid();
         }
         if (role.equals("admin")) {
             viewUtils.changeAnchorPane(basePane, OWNER_VIEW_FXML);

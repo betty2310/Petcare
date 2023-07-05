@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.petcare.Controller.Service.StatisticsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="707.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.StatisticsController">
+    <children>
+        <TabPane layoutX="2.0" layoutY="1.0" prefHeight="600.0" prefWidth="701.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab fx:id="date" text="Theo Ngày">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="542.0" prefWidth="680.0">
+                            <children>
+                                <Pane layoutX="9.0" layoutY="-19.0" prefHeight="560.0" prefWidth="703.0">
+                                    <children>
+                                        <DatePicker fx:id="date_select" layoutX="498.0" layoutY="32.0" />
+                                        <TextField fx:id="search_box" layoutX="16.0" layoutY="32.0" prefHeight="26.0" prefWidth="179.0" />
+                                        <TableView fx:id="table" layoutX="7.0" layoutY="86.0" prefHeight="389.0" prefWidth="676.0" stylesheets="@../styles/table.css">
+                                            <columns>
+                                                <TableColumn fx:id="stateColumn" prefWidth="79.20001029968262" text="Chủ nuôi" />
+                                                <TableColumn fx:id="typeColumn" prefWidth="101.59998321533203" text="Tên dịch vụ" />
+                                                <TableColumn fx:id="priceColumn" prefWidth="64.0" text="Giá $" />
+                                                <TableColumn fx:id="dateColumn" prefWidth="144.0" text="Ngày tạo" />
+                                                <TableColumn fx:id="startColumn" prefWidth="144.0" text="Ngày bắt đầu" />
+                                                <TableColumn fx:id="endColumn" prefWidth="141.60003662109375" text="Ngày kết thúc" />
+                                            </columns>
+                                        </TableView>
+                                        <Text layoutX="499.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng thu:" wrappingWidth="67.67574310302734" />
+                                        <TextField fx:id="total_price" layoutX="569.0" layoutY="482.0" prefHeight="26.0" prefWidth="91.0" />
+                                    </children>
+                                </Pane>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab fx:id="month" text="Theo Tháng-">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="710.0">
+                            <children>
+                                <Pane layoutY="-3.0" prefHeight="544.0" prefWidth="702.0">
+                                    <children>
+                                        <DatePicker fx:id="month_select" layoutX="504.0" layoutY="22.0" />
+                                        <TableView fx:id="table1" layoutX="21.0" layoutY="63.0" prefHeight="401.0" prefWidth="663.0" stylesheets="@../styles/table.css">
+                                            <columns>
+                                                <TableColumn fx:id="endColumn1" prefWidth="318.4000301361084" text="Ngày" />
+                                                <TableColumn fx:id="priceColumn1" prefWidth="340.0" text="Tổng thu" />
+                                            </columns>
+                                        </TableView>
+                                    </children>
+                                </Pane>
+                                <Text layoutX="478.0" layoutY="490.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tổng thu tháng:" wrappingWidth="98.0757064819336" />
+                                <TextField fx:id="total_price1" layoutX="579.0" layoutY="472.0" prefHeight="26.0" prefWidth="91.0" />
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
 </AnchorPane>
