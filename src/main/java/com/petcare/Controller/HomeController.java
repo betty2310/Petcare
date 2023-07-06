@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -52,18 +53,7 @@ public class HomeController {
             }
             if (result1.orElse(bar) == bar) {
 //                        viewUtils.changeScene(event, SIGNUP_VIEW_FXML);
-                FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SIGNUP_VIEW_FXML));
-                try {
-                    Parent root = fxmlLoader.load();
-                    Stage popupStage = new Stage();
-                    popupStage.initModality(Modality.APPLICATION_MODAL);
-                    popupStage.setTitle("Đăng ký tài khoản mới");
-                    popupStage.setScene(new Scene(root));
-                    popupStage.showAndWait();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                loadSignUpFXML();
             }
         }   else {
             try {
@@ -105,18 +95,7 @@ public class HomeController {
                     }
                     if (result1.orElse(bar) == bar) {
 //                        viewUtils.changeScene(event, SIGNUP_VIEW_FXML);
-                        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SIGNUP_VIEW_FXML));
-                        try {
-                            Parent root = fxmlLoader.load();
-                            Stage popupStage = new Stage();
-                            popupStage.initModality(Modality.APPLICATION_MODAL);
-                            popupStage.setTitle("Đăng ký tài khoản mới");
-                            popupStage.setScene(new Scene(root));
-                            popupStage.showAndWait();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
+                        loadSignUpFXML();
                     }
 
                 }
@@ -125,6 +104,25 @@ public class HomeController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    public void signUp(MouseEvent mouseEvent) {
+        loadSignUpFXML();
+    }
+
+    private void loadSignUpFXML() {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomeApplication.class.getResource(SIGNUP_VIEW_FXML));
+        try {
+            Parent root = fxmlLoader.load();
+            Stage popupStage = new Stage();
+            popupStage.initModality(Modality.APPLICATION_MODAL);
+            popupStage.setTitle("Đăng ký tài khoản mới");
+            popupStage.setScene(new Scene(root));
+            popupStage.showAndWait();
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

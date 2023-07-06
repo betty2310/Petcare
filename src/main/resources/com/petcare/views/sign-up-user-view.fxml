@@ -7,27 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="496.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.SignUpController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="587.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.SignUpController">
    <children>
       <Label alignment="BASELINE_CENTER" layoutX="178.0" layoutY="74.0" prefHeight="27.0" prefWidth="232.0" text="Đăng ký người dùng mới" textAlignment="CENTER" textFill="#3f4d66">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="signUpUsername" layoutX="122.0" layoutY="174.0" prefHeight="46.0" prefWidth="343.0" promptText="Username" style="-fx-background-radius: 20px; -fx-border-radius: 20px; -fx-border-color: #3f4d67;">
+      <TextField fx:id="signUpUsername" layoutX="122.0" layoutY="139.0" prefHeight="46.0" prefWidth="343.0" promptText="Tài khoảng">
          <font>
-            <Font size="20.0" />
+            <Font size="14.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="signUpPassword" layoutX="122.0" layoutY="275.0" prefHeight="43.0" prefWidth="343.0" promptText="Password" style="-fx-border-radius: 20px; -fx-background-radius: 20px; -fx-border-color: #3f4d67;">
+      <PasswordField fx:id="signUpPassword" layoutX="123.0" layoutY="222.0" prefHeight="43.0" prefWidth="343.0" promptText="Mật khẩu">
          <font>
-            <Font size="20.0" />
+            <Font size="14.0" />
          </font>
       </PasswordField>
-      <Button fx:id="signUpButton" layoutX="203.0" layoutY="380.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="43.0" prefWidth="182.0" style="-fx-background-color: #3f4d67; -fx-background-radius: 20px;" text="Submit" textFill="WHITE">
+      <Button fx:id="signUpButton" layoutX="203.0" layoutY="396.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="43.0" prefWidth="182.0" text="Submit">
          <font>
-            <Font size="20.0" />
+            <Font size="14.0" />
          </font>
       </Button>
+      <PasswordField fx:id="ReSignUpPassword" layoutX="123.0" layoutY="305.0" prefHeight="43.0" prefWidth="343.0" promptText="Nhập lại mật khẩu">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </PasswordField>
    </children>
 </AnchorPane>
