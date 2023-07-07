@@ -14,7 +14,7 @@
             <Font size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="signUpUsername" layoutX="122.0" layoutY="139.0" prefHeight="46.0" prefWidth="343.0" promptText="Tài khoảng">
+      <TextField fx:id="signUpUsername" layoutX="122.0" layoutY="139.0" prefHeight="46.0" prefWidth="343.0" promptText="Tài khoản">
          <font>
             <Font size="14.0" />
          </font>
