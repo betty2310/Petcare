@@ -70,7 +70,7 @@ public class AddPetController implements Initializable {
         int id = pre.getInt("id", 0);
         role = pre.get("role", "");
         if(role.equals("admin")) {
-            titleLabel.setText("Thêm chủ nuôi");
+            titleLabel.setText("Thêm thú cưng mới");
         }
 
         ObservableList<String> genderList = FXCollections.observableArrayList("F", "M");
