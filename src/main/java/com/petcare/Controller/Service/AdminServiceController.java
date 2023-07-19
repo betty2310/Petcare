@@ -42,8 +42,6 @@ import java.util.ResourceBundle;
 import static com.petcare.Constants.FXMLConstants.*;
 
 public class AdminServiceController implements Initializable {
-    @FXML
-    private Button add_service_id;
 
     @FXML
     private AnchorPane basePane;

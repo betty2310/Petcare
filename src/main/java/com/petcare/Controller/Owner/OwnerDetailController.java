@@ -63,4 +63,15 @@ public class OwnerDetailController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+
+//    public void setTable() throws IOException {
+//        List<RecordOnPet> recordOnPetList = PetService.getRecordsOnPet(this.pet.getID());
+//        ObservableList<RecordOnPet> data = FXCollections.observableArrayList(recordOnPetList);
+//        table.setItems(data);
+//        dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
+//        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+//        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
+//        stateColumn.setCellValueFactory(new PropertyValueFactory<>("state"));
+//
+//    }
 }
