@@ -50,6 +50,21 @@ public class PetService {
         }
         return numberOfPets;
     }
+    public static int getNumberOfPets() {
+        int numberOfPets = 0;
+        String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Pets";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    numberOfPets = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the number of pets for owner ID: " + e);
+        }
+        return numberOfPets;
+    }
 
     public static int addPet(Pet pet) {
         String INSERT_QUERY = "INSERT INTO Pets (Name, Gender, Info, Owner_ID, Employee_ID) VALUES (?, ?, ?, ?, ?)";

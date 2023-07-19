@@ -5,15 +5,20 @@ import com.petcare.Services.OwnerService;
 import com.petcare.Services.PetService;
 import com.petcare.Services.ServiceService;
 import com.petcare.Utils.ViewUtils;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -51,13 +56,25 @@ public class AdminController implements Initializable {
     private Label numberServiceLabel;
 
     @FXML
+    private Label numberOwner;
+
+    @FXML
     private Label usernameLabel;
 
     @FXML
     private Button buttonMedicalAppointment;
+    @FXML
+    private VBox ownerBox;
+    @FXML
+    private TabPane charTab;
 
     @FXML
     private Button buttonStatistics;
+    @FXML
+    private PieChart stageChart;
+
+    @FXML
+    private PieChart typeChart;
 
     //Save user role
     private final ViewUtils viewUtils = new ViewUtils();
@@ -93,10 +110,9 @@ public class AdminController implements Initializable {
     public void switchToService() throws IOException {
         Preferences pre = Preferences.userRoot();
         String role = pre.get("role", "");
-        if(role.equals("admin")){
+        if (role.equals("admin")) {
             viewUtils.changeAnchorPane(basePane, ADMIN_SERVICE_VIEW_FXML);
-        }
-        else {
+        } else {
             viewUtils.changeAnchorPane(basePane, SERVICE_VIEW_FXML);
         }
     }
@@ -124,12 +140,37 @@ public class AdminController implements Initializable {
             numberPetLabel.setText("" + PetService.getNumberOfPetsByOwnerID(id));
             usernameLabel.setText("" + OwnerService.getNameFromID(id));
             numberServiceLabel.setText("" + ServiceService.getNumberOfServicesByOwnerID(id));
+            ownerBox.setVisible(false);
+            charTab.setVisible(false);
         }
         if (role.equals("admin")) {
+            numberPetLabel.setText("" + PetService.getNumberOfPets());
+            numberServiceLabel.setText("" + ServiceService.getNumberOfServices());
+            numberOwner.setText("" + OwnerService.getOwner().size());
             buttonMedicalAppointment.setVisible(true);
             buttonStatistics.setVisible(true);
             buttonPet.setText("Chủ nuôi");
+            createPieChart();
         }
+    }
+
+    public void createPieChart() {
+        ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                        new PieChart.Data("Khám bệnh", ServiceService.getNumberOfServicesByType("Khám bệnh")),
+                        new PieChart.Data("làm đẹp", ServiceService.getNumberOfServicesByType("làm đẹp")),
+                        new PieChart.Data("lưu trữ", ServiceService.getNumberOfServicesByType("lưu trữ"))
+                );
+        typeChart.setData(pieChartData);
+        typeChart.setTitle("Theo loại dịch vụ");
+
+        ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
+                new PieChart.Data("done", ServiceService.getNumberOfServicesByState("done")),
+                new PieChart.Data("not start", ServiceService.getNumberOfServicesByState("not start")),
+                new PieChart.Data("in progress", ServiceService.getNumberOfServicesByState("in progress"))
+        );
+        stageChart.setData(data);
+        stageChart.setTitle("Theo trạng thái");
     }
 
 }

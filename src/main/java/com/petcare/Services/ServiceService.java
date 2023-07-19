@@ -39,6 +39,55 @@ public class ServiceService {
         }
         return n;
     }
+    public static int getNumberOfServices() {
+        int n = 0;
+        String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Service";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    n = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the number of services for owner ID: " +  e);
+        }
+        return n;
+    }
+    public static int getNumberOfServicesByType(String type) {
+        int n = 0;
+        String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Service WHERE Type = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY)) {
+            preparedStatement.setString(1, type);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    n = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the number of services for type: " + type, e);
+        }
+        return n;
+    }
+    public static int getNumberOfServicesByState(String state) {
+        int n = 0;
+        String SELECT_QUERY = "SELECT COUNT(*) AS count FROM Service WHERE State = ?";
+        try (Connection conn = DriverManager.getConnection(DATABASE, USERNAME, PASSWORD);
+             PreparedStatement preparedStatement = conn.prepareStatement(SELECT_QUERY)) {
+            preparedStatement.setString(1, state);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    n = resultSet.getInt("count");
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error retrieving the number of services for state: " + state, e);
+        }
+        return n;
+    }
+
+
 
     public static int addService(Service service) {
         String INSERT_QUERY = "INSERT INTO service (Type, Start_Time, End_Time, Owner_ID, Date) VALUES (?, ?, ?,?, ?);";
