@@ -114,15 +114,15 @@ public class AdminServiceController implements Initializable {
             e.printStackTrace();
         }
     }
-
     private String getRandomColorCode(Random random) {
-        // Tạo một màu ngẫu nhiên
-        int red = random.nextInt(256);
-        int green = random.nextInt(256);
-        int blue = random.nextInt(256);
+        // Tạo một màu ngẫu nhiên trong khoảng (0, 128, 128) đến (0, 255, 255)
+        int red = 0;
+        int green = random.nextInt(128) + 128; // Sinh ngẫu nhiên giá trị từ 128 đến 255
+        int blue = random.nextInt(128) + 128; // Sinh ngẫu nhiên giá trị từ 128 đến 255
 
         return String.format("#%02x%02x%02x", red, green, blue); // Định dạng mã màu hex
     }
+
     private void setFixButton() {
         fixButton.setOnMouseClicked(event -> {
             Service selectedService = table.getSelectionModel().getSelectedItem();

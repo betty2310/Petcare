@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -75,6 +76,10 @@ public class AdminController implements Initializable {
 
     @FXML
     private PieChart typeChart;
+    @FXML
+    private HBox statisticHbox;
+    @FXML
+    private HBox medicalHbox;
 
     //Save user role
     private final ViewUtils viewUtils = new ViewUtils();
@@ -147,8 +152,8 @@ public class AdminController implements Initializable {
             numberPetLabel.setText("" + PetService.getNumberOfPets());
             numberServiceLabel.setText("" + ServiceService.getNumberOfServices());
             numberOwner.setText("" + OwnerService.getOwner().size());
-            buttonMedicalAppointment.setVisible(true);
-            buttonStatistics.setVisible(true);
+            statisticHbox.setVisible(true);
+            medicalHbox.setVisible(true);
             buttonPet.setText("Chủ nuôi");
             createPieChart();
         }

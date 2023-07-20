@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -18,34 +20,81 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.AdminController">
    <left>
-      <AnchorPane prefHeight="606.0" prefWidth="190.0" style="-fx-background-color: #5E81AC;" stylesheets="@../styles/navigation-styles.css" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="600.0" prefWidth="186.0" style="-fx-background-color: #5E81AC;" stylesheets="@../styles/navigation-styles.css" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="-1.0" layoutY="88.0" prefHeight="509.0" prefWidth="191.0" spacing="30.0" style="-fx-background-color: transparent;">
+            <VBox layoutX="-1.0" layoutY="88.0" minWidth="180.0" prefHeight="510.0" prefWidth="191.0" spacing="30.0" style="-fx-background-color: transparent;">
                <children>
-                  <Button id="menuButton" fx:id="buttonPet" mnemonicParsing="false" onAction="#switchToPet" prefHeight="48.0" prefWidth="191.0" text="Thú cưng" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button id="menuButton" fx:id="buttonService" mnemonicParsing="false" onAction="#switchToService" prefHeight="48.0" prefWidth="191.0" text="Dịch vụ" textAlignment="CENTER" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="buttonMedicalAppointment" mnemonicParsing="false" onAction="#switchToMedical" prefHeight="48.0" prefWidth="191.0" text="Hẹn khám bệnh" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="buttonStatistics" mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="48.0" prefWidth="191.0" text="Thống kê" textFill="WHITE" visible="false">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font>
-                  </Button>
+                  <HBox>
+                     <children>
+                        <Button id="menuButton" fx:id="buttonPet" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#switchToPet" prefHeight="50.0" prefWidth="254.0" text="Thú cưng" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/pet.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Button id="menuButton" fx:id="buttonService" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#switchToService" prefHeight="50.0" prefWidth="207.0" text="Dịch vụ" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="38.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/service.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="medicalHbox" visible="false">
+                     <children>
+                        <Button fx:id="buttonMedicalAppointment" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#switchToMedical" prefHeight="50.0" prefWidth="335.0" text="Hẹn khám" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/medical.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox fx:id="statisticHbox" visible="false">
+                     <children>
+                        <Button fx:id="buttonStatistics" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="50.0" prefWidth="283.0" text="Thống kê" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="39.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/statistic.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
                   <Pane prefHeight="94.0" prefWidth="191.0" />
-                  <Button id="menuButton" fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="48.0" prefWidth="191.0" text="Đăng xuất" textAlignment="CENTER" textFill="WHITE">
+                  <Button id="menuButton" fx:id="logoutButton" mnemonicParsing="false" onAction="#logout" prefHeight="46.0" prefWidth="215.0" text="Đăng xuất" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="14.0" />
+                        <Font name="System Bold" size="18.0" />
                      </font>
                   </Button>
                </children>
@@ -53,18 +102,34 @@
                   <Insets top="50.0" />
                </padding>
             </VBox>
-            <Button id="menuButton" fx:id="dashboardButton" layoutX="-1.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="48.0" prefWidth="191.0" text="DASHBOARD" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Segoe UI" size="14.0" />
-               </font>
-            </Button>
+            <HBox layoutX="-1.0" layoutY="14.0" prefHeight="91.0" prefWidth="192.0">
+               <children>
+                  <Button id="menuButton" fx:id="dashboardButton" mnemonicParsing="false" onAction="#switchToDashboard" prefHeight="70.0" prefWidth="198.0" text="DASHBOARD" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/17416603551617256516-128.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </left>
    <center>
-      <AnchorPane fx:id="basePane" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #f4f6fb;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="basePane" prefHeight="603.0" prefWidth="701.0" style="-fx-background-color: #f4f6fb;" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutX="40.0" layoutY="97.0" prefHeight="98.0" prefWidth="418.0" spacing="20.0">
+            <ImageView fitHeight="107.0" fitWidth="716.0" layoutX="-1.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icons/brand.png" />
+               </image>
+            </ImageView>
+            <HBox layoutX="38.0" layoutY="113.0" prefHeight="98.0" prefWidth="418.0" spacing="20.0">
                <children>
                   <VBox prefHeight="98.0" prefWidth="122.0" spacing="20.0" style="-fx-background-color: #BF616A;">
                      <children>
@@ -75,7 +140,7 @@
                         </Label>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="121.0" text="Thú cưng" textAlignment="CENTER">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -89,7 +154,7 @@
                         </Label>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="120.0" text="Dịch vụ">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
@@ -103,36 +168,36 @@
                         </Label>
                         <Label alignment="CENTER" prefHeight="20.0" prefWidth="120.0" text="Chủ nuôi">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="460.0" layoutX="498.0" layoutY="60.0" stroke="#b9bdbf" strokeType="OUTSIDE" strokeWidth="0.0" width="180.0" />
-            <Label alignment="BASELINE_CENTER" layoutX="497.0" layoutY="97.0" prefHeight="39.0" prefWidth="182.0" text="Welcome back">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="459.0" layoutX="495.0" layoutY="113.0" stroke="#b9bdbf" strokeType="OUTSIDE" strokeWidth="0.0" width="180.0" />
+            <Label alignment="BASELINE_CENTER" layoutX="494.0" layoutY="113.0" prefHeight="39.0" prefWidth="182.0" text="Welcome back">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="497.0" layoutY="136.0" prefHeight="39.0" prefWidth="182.0" text="Admin" textFill="#1bbde4">
+            <Label fx:id="usernameLabel" alignment="BASELINE_CENTER" layoutX="494.0" layoutY="152.0" prefHeight="39.0" prefWidth="182.0" text="Admin" textFill="#1bbde4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Line endX="50.0" layoutX="588.0" layoutY="204.0" startX="-50.0" stroke="#b9bdbf" />
-            <Text layoutX="508.0" layoutY="250.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông báo" textAlignment="CENTER" wrappingWidth="158.52798461914062">
+            <Line endX="50.0" layoutX="585.0" layoutY="220.0" startX="-50.0" stroke="#b9bdbf" />
+            <Text layoutX="505.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thông báo" textAlignment="CENTER" wrappingWidth="158.52798461914062">
                <font>
-                  <Font size="20.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Text>
-            <Text fx:id="notifLabel" fill="#1bbde4" layoutX="515.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khum có" textAlignment="CENTER" wrappingWidth="143.3280029296875">
+            <Text fx:id="notifLabel" fill="#1bbde4" layoutX="512.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Khum có" textAlignment="CENTER" wrappingWidth="143.3280029296875">
                <font>
                   <Font name="System Italic" size="18.0" />
                </font>
             </Text>
-            <TabPane fx:id="charTab" layoutX="4.0" layoutY="228.0" prefHeight="366.0" prefWidth="489.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
+            <TabPane fx:id="charTab" layoutY="228.0" prefHeight="375.0" prefWidth="494.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE">
               <tabs>
                 <Tab text="Phân loại">
                   <content>

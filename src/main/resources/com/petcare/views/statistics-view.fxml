@@ -21,7 +21,7 @@
                                 <Pane layoutX="9.0" layoutY="-19.0" prefHeight="560.0" prefWidth="703.0">
                                     <children>
                                         <DatePicker fx:id="date_select" layoutX="498.0" layoutY="32.0" prefHeight="25.0" prefWidth="185.0" />
-                                        <TextField fx:id="search_box" layoutX="7.0" layoutY="32.0" prefHeight="26.0" prefWidth="188.0" />
+                                        <TextField fx:id="search_box" layoutX="7.0" layoutY="32.0" prefHeight="26.0" prefWidth="188.0" promptText="Tìm kiếm ..." />
                                         <TableView fx:id="table" layoutX="7.0" layoutY="86.0" prefHeight="389.0" prefWidth="676.0" stylesheets="@../styles/table.css">
                                             <columns>
                                                 <TableColumn fx:id="stateColumn" prefWidth="79.20001029968262" text="Chủ nuôi" />
