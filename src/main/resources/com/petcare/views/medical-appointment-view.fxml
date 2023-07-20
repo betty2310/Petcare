@@ -6,42 +6,50 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.MedicalAppoinmentController">
+<AnchorPane prefHeight="600.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.MedicalAppoinmentController">
    <children>
       <Text layoutX="33.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lịch hẹn khám bệnh" wrappingWidth="257.91676330566406">
          <font>
             <Font name="System Bold" size="26.0" />
          </font>
       </Text>
-      <TableView fx:id="recordTable" layoutX="19.0" layoutY="71.0" prefHeight="264.0" prefWidth="672.0">
+      <TableView fx:id="recordTable" layoutX="19.0" layoutY="71.0" prefHeight="278.0" prefWidth="672.0" stylesheets="@../styles/table.css">
         <columns>
           <TableColumn fx:id="IDcolumn" prefWidth="75.0" text="ID" />
-            <TableColumn fx:id="petcolumn" prefWidth="198.4000244140625" text="tên thú cưng" />
-            <TableColumn fx:id="statuscolumn" prefWidth="161.60003662109375" text="trạng thái" />
-          <TableColumn fx:id="Medicationcolmun" prefWidth="236.8000030517578" text="đơn thuốc" />
+            <TableColumn fx:id="petcolumn" prefWidth="198.4000244140625" text="Tên thú cưng" />
+            <TableColumn fx:id="statuscolumn" prefWidth="161.60003662109375" text="Trạng thái" />
+          <TableColumn fx:id="Medicationcolmun" prefWidth="236.8000030517578" text="Đơn thuốc" />
         </columns>
       </TableView>
-      <Button fx:id="updateButton" layoutX="555.0" layoutY="29.0" mnemonicParsing="false" onMouseClicked="#updateButton" text="cập nhật" visible="false">
+      <Button fx:id="updateButton" layoutX="618.0" layoutY="369.0" mnemonicParsing="false" onMouseClicked="#updateButton" style="-fx-background-color: #5e81ac;" text="Cập nhật" textFill="#faf9f9" visible="false">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
       <VBox fx:id="updateVBox" layoutX="33.0" layoutY="352.0" prefHeight="200.0" prefWidth="529.0" visible="false">
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="cập nhật bệnh án">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cập nhật bệnh án">
                <font>
                   <Font size="26.0" />
                </font>
             </Text>
-            <Label text="trạng thái" />
+            <Label text="Trạng thái">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <TextField fx:id="statustextfield" />
-            <Label text="đơn thuốc" />
+            <Label text="Đơn thuốc">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
             <TextField fx:id="medicationtextfield" />
-            <Button mnemonicParsing="false" onMouseClicked="#confirmButton" text="Xác nhận" />
+            <Pane prefHeight="17.0" prefWidth="530.0" />
+            <Button mnemonicParsing="false" onMouseClicked="#confirmButton" style="-fx-background-color: #5e81ac;" text="Xác nhận" textFill="WHITE" />
          </children>
       </VBox>
    </children>

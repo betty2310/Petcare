@@ -12,16 +12,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="503.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceDetailController">
+<AnchorPane prefHeight="459.0" prefWidth="469.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.petcare.Controller.Service.ServiceDetailController">
    <children>
-      <HBox layoutX="10.0" layoutY="4.0" prefHeight="437.0" prefWidth="454.0" spacing="20.0">
+      <HBox layoutX="10.0" layoutY="4.0" prefHeight="385.0" prefWidth="454.0" spacing="20.0">
          <children>
             <ImageView fitHeight="171.0" fitWidth="122.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../icons/cheems.png" />
                </image>
             </ImageView>
-            <VBox prefHeight="342.0" prefWidth="311.0" spacing="10.0">
+            <VBox prefHeight="390.0" prefWidth="311.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="45.0" prefWidth="311.0" spacing="10.0">
                      <children>
@@ -69,7 +69,7 @@
             </VBox>
          </children>
       </HBox>
-      <Button layoutX="43.0" layoutY="454.0" mnemonicParsing="false" onAction="#onUpdate" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE" />
-      <Text fx:id="log" layoutX="128.0" layoutY="471.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="311.0" />
+      <Button layoutX="43.0" layoutY="402.0" mnemonicParsing="false" onAction="#onUpdate" style="-fx-background-color: #3f4d67;" text="Cập nhật" textFill="WHITE" />
+      <Text fx:id="log" layoutX="122.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="311.0" />
    </children>
 </AnchorPane>
